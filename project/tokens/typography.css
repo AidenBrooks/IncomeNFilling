@@ -1,0 +1,17 @@
+:root{
+--font-display:'Space Grotesk',ui-sans-serif,'Segoe UI',sans-serif;
+--font-body:'IBM Plex Sans',ui-sans-serif,'Segoe UI',sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+--text-xs:.75rem;--leading-xs:1rem;
+--text-sm:.875rem;--leading-sm:1.3rem;
+--text-base:1rem;--leading-base:1.6rem;
+--text-lg:1.125rem;--leading-lg:1.7rem;
+--text-xl:1.25rem;--leading-xl:1.7rem;
+--text-2xl:1.5rem;--leading-2xl:1.9rem;
+--text-3xl:1.875rem;--leading-3xl:2.25rem;
+--text-4xl:2.375rem;--leading-4xl:2.7rem;
+--text-5xl:3.25rem;--leading-5xl:3.5rem;
+--text-6xl:4rem;--leading-6xl:4.1rem;
+--tracking-tight:-.02em;--tracking-normal:0em;--tracking-wide:.04em;--tracking-widest:.12em;
+--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+}

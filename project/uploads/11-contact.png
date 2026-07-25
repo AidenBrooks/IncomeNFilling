@@ -1,0 +1,102 @@
+# Income N Filing — Website Revamp Design Prompt
+
+Design a complete website revamp for Income N Filing, a business tax and
+compliance advisory firm based in Kolkata (second office in Bhagalpur),
+serving clients since 2017, 500+ businesses served across ~94 services
+in 10 categories (Incorporation, Government Registrations, Income Tax,
+GST, Corporate Compliances, Insolvency Advices, Documentation Services,
+Contracts, Accounting & Book Keeping, Ancillary Services). Positioning
+line: "Simplifying Compliance. Empowering Business."
+
+## Creative direction: Compliance OS
+
+Reframe the brand from "tax firm with a website" to "compliance
+software you talk to." The whole site should feel like operating a
+dashboard, not scrolling a brochure. Two systems work together:
+
+**1. Terminal search (hero, right side of homepage)**
+A live-feeling command terminal — monospace type, blinking cursor,
+placeholder text that cycles through example queries like
+`> search gst registration`, `> search nri filing`, `> search trademark`.
+As the user types, it filters the full service directory in real time,
+autocomplete-style. Selecting a result "outputs" a response block like
+a CLI return — service name, what it covers, turnaround expectation,
+and a `[ book ]` command instead of a generic button. Break the
+terminal module's palette on purpose — green-on-black or amber-on-black
+against the rest of the site's navy/gold, like a system-within-a-system.
+Every microcopy choice on the site should quietly inherit this
+vocabulary: services are `available`, not "offered"; a completed
+filing shows `status: deployed`; form submissions read like a command
+executing.
+
+**2. Dashboard logic (everything else)**
+Stats aren't a static row of numbers — they read like a live ops
+panel: status indicators, a subtle "next compliance deadline" ticker,
+a pulse marker on the Bhagalpur/Kolkata office map. Service categories
+on the Services Hub render as dashboard modules, not marketing cards.
+The terminal search should feel like it's querying this dashboard, not
+sitting decoratively in the hero disconnected from the rest of the
+page.
+
+Base palette: deep navy + gold/amber accent (carried over from current
+brand), with the terminal module allowed to break into
+green-on-black or amber-on-black as its own visual register.
+
+## Required pages (14 — do not exceed)
+
+1. **Home** — terminal hero, live-feeling stats/status bar, "How It
+   Works" (3-step process), why-choose-us grid, testimonial preview,
+   final CTA
+2. **About** — mission/story, credibility stat grid, client logo strip
+3. **Services Hub** — the full searchable directory; terminal search
+   at full power here, 10 categories, ~94 services, routes into the 7
+   flagship pages below or expands inline for the rest
+4. **Live Chat** — a standalone page styled as a terminal-native chat
+   interface (continues the `> ` command vocabulary from the hero:
+   `> connect to advisor`, typed message appears as a command being
+   issued). This is NOT a staffed live-chat backend — no ongoing
+   agent infrastructure. On submit, the message routes straight to
+   WhatsApp (primary, already positioned as "fastest response") with
+   email as a visible fallback option. The page should feel like a
+   live conversation with the compliance system itself, even though
+   functionally it's a styled handoff to WhatsApp/email. No pricing,
+   dollar figures, or numeric ranges anywhere on the site — payment
+   and quote details are handled entirely through this direct contact
+   channel, never published
+5. **ITR Filing** (flagship service page)
+6. **GST Registration & Filing** (flagship service page)
+7. **Company Incorporation** (flagship service page)
+8. **TCS Filing & Compliance** (flagship service page)
+9. **Tax Notice Handling** (flagship service page)
+10. **Capital Gains Advisory** (flagship service page)
+11. **NRI Income Tax Filing** (flagship service page)
+12. **Testimonials / Case Studies** — expand existing Google reviews
+    into fuller case-study format
+13. **FAQ** — standalone page, not a homepage section
+14. **Contact** — traditional contact page: consultation form, phone/
+    email/WhatsApp listed as channels, office locations (Bhagalpur +
+    Kolkata), social links. Distinct from Live Chat — this is the
+    formal "fill out a form" path, Live Chat is the conversational
+    "talk now" path. Don't let the two collapse into duplicates of
+    each other.
+
+Nav: Home, About, Services (dropdown exposing the 7 flagship pages),
+Live Chat, Testimonials, FAQ, Contact.
+
+## Constraints
+
+- Same color palette and typography system across all 14 pages, but
+  each page needs its own layout logic — no repeated template
+  stamped across pages. The 7 flagship service pages especially
+  should differ from each other in structure (e.g. NRI Filing should
+  read remote/international-user-aware; Company Incorporation should
+  read more formal/B2B than ITR Filing).
+- Original design system only — nothing that reads as a Webflow
+  template or generic CA-firm site (avoid the beige-card,
+  stock-photo-of-handshake look every competitor in this space uses).
+- Brand tone: trustworthy and precise, not sterile-corporate. Client
+  base spans first-time salaried ITR filers through startups and
+  NRIs, so the design has to read credible to a novice and a
+  business owner at once.
+- Deliverable target: Next.js-compatible component structure — final
+  code handoff will be built in Next.js.
