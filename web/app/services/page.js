@@ -49,7 +49,7 @@ export default function ServicesPage() {
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
       <NavBar active="services" />
-      <section style={{ background: "linear-gradient(150deg,var(--navy-950) 40%,var(--navy-800,#1c3a5e))", padding: "66px 32px 120px", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(150deg,var(--navy-950) 40%,var(--navy-800,#1c3a5e))", padding: "clamp(44px, 8vw, 66px) var(--container-pad) clamp(80px, 14vw, 120px)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px)", backgroundSize: "26px 26px", opacity: 0.6 }} />
         <div style={{ position: "absolute", top: -70, right: "6%", width: 280, height: 280, background: "var(--gold-500)", opacity: 0.16, borderRadius: 46, transform: "rotate(18deg)" }} />
         <div style={{ position: "absolute", bottom: -90, left: "-4%", width: 320, height: 320, borderRadius: "50%", border: "2px dashed rgba(255,255,255,.12)", animation: "spin-slow 50s linear infinite" }} />
@@ -93,7 +93,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section style={{ padding: "0 32px 96px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -64 }}>
+      <section style={{ padding: "0 var(--container-pad) 96px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -64 }}>
         <div style={{ position: "sticky", top: 78, zIndex: 40, background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "var(--shadow-md)", border: "1px solid var(--ink-100)", padding: "14px 18px", marginBottom: 30, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", flex: 1, minWidth: 0 }}>
             {chips.map((ch) => {
@@ -145,7 +145,7 @@ export default function ServicesPage() {
           )}
         </div>
         {filtered.length > 0 ? (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
             {filtered.map((c, i) => (
               <ServiceCard key={c.title} c={c} i={i} selCount={catSelCount(c)} onClick={() => setPicker(HUB_CATEGORIES.indexOf(c))} />
             ))}
@@ -170,7 +170,7 @@ export default function ServicesPage() {
         )}
       </section>
       {totalSel > 0 && picker === null && (
-        <div style={{ position: "fixed", bottom: 26, left: "50%", transform: "translateX(-50%)", zIndex: 85, display: "flex", alignItems: "center", gap: 16, background: "var(--navy-950)", color: "var(--white)", borderRadius: "var(--radius-pill)", padding: "12px 14px 12px 22px", boxShadow: "0 20px 50px rgba(6,18,36,.4)", fontFamily: "var(--font-body)" }}>
+        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 85, display: "flex", alignItems: "center", gap: 12, background: "var(--navy-950)", color: "var(--white)", borderRadius: "var(--radius-pill)", padding: "12px 14px 12px 22px", boxShadow: "0 20px 50px rgba(6,18,36,.4)", fontFamily: "var(--font-body)", maxWidth: "calc(100vw - 32px)", flexWrap: "wrap", justifyContent: "center" }}>
           <span style={{ fontSize: 14 }}>
             <b style={{ fontFamily: "var(--font-display)", fontSize: 17 }}>{totalSel}</b> service{totalSel > 1 ? "s" : ""} selected
           </span>

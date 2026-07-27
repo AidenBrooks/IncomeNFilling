@@ -65,7 +65,7 @@ export function Stepper() {
   const s = STEPS[active];
 
   return (
-    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} style={{ display: "grid", gridTemplateColumns: "minmax(0,340px) minmax(0,1fr)", gap: 24, alignItems: "stretch" }}>
+    <div className="rsp-2col" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} style={{ display: "grid", gridTemplateColumns: "minmax(0,340px) minmax(0,1fr)", gap: 24, alignItems: "stretch" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {STEPS.map((st, i) => (
           <button

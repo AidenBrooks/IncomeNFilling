@@ -6,10 +6,10 @@ import { HeroCTAButton } from "@/components/ui/HeroCTAButton";
 export function ITRPromo() {
   const router = useRouter();
   return (
-    <section style={{ padding: "40px 32px 90px" }}>
-      <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", position: "relative", borderRadius: "var(--radius-xl)", overflow: "hidden", minHeight: 340, display: "grid", gridTemplateColumns: "1fr 1fr", background: "linear-gradient(115deg,var(--navy-050) 46%,#dbe6fb)" }}>
+    <section style={{ padding: "clamp(28px, 6vw, 40px) var(--container-pad) clamp(48px, 8vw, 90px)" }}>
+      <div className="rsp-2col" style={{ maxWidth: "var(--container-max)", margin: "0 auto", position: "relative", borderRadius: "var(--radius-xl)", overflow: "hidden", minHeight: 340, display: "grid", gridTemplateColumns: "1fr 1fr", background: "linear-gradient(115deg,var(--navy-050) 46%,#dbe6fb)" }}>
         <div style={{ position: "absolute", right: "22%", top: "50%", transform: "translateY(-50%)", width: 520, height: 520, borderRadius: "50%", border: "60px solid rgba(43,108,214,.06)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", zIndex: 2, padding: "52px 20px 52px 56px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
+        <div style={{ position: "relative", zIndex: 2, padding: "clamp(36px, 6vw, 52px) clamp(20px, 4vw, 20px) clamp(36px, 6vw, 52px) clamp(24px, 6vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 18 }}>
           <h2 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-4xl)", color: "var(--navy-900)", margin: 0, lineHeight: 1.12, letterSpacing: "var(--tracking-tight)" }}>
             File ITR in Minutes
             <br />

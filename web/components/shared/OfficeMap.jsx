@@ -23,39 +23,50 @@ export function OfficeMap({ contactChannels } = {}) {
 
   useEffect(() => {
     let cancelled = false;
-    const w = wrap.current ? wrap.current.clientWidth : 620;
-    const h = 468;
-    try {
-      const countries = feature(atlas, atlas.objects.countries);
-      const india = countries.features.find((f) => String(f.id) === "356");
-      if (!india) throw new Error("india not found");
-      const proj = geoMercator().fitExtent([[46, 46], [w - 46, h - 46]], india);
-      const path = geoPath(proj);
-      const others = countries.features.filter((f) => String(f.id) !== "356");
-      const svg =
-        '<svg viewBox="0 0 ' + w + " " + h + '" width="' + w + '" height="' + h + '" style="display:block"><g>' +
-        others.map((f) => '<path d="' + (path(f) || "") + '" fill="rgba(15,42,66,0.04)" stroke="rgba(15,42,66,0.1)" stroke-width="0.5"/>').join("") +
-        '</g><path d="' + (path(india) || "") + '" fill="rgba(239,168,46,0.16)" stroke="#EFA82E" stroke-width="1.4"/></svg>';
-      if (mapRef.current) mapRef.current.innerHTML = svg;
-      const offices = OFFICES.map((o) => {
-        const p = proj(o.lnglat);
-        return { ...o, x: p[0], y: p[1] };
-      });
-      const metros = METROS.map((m) => {
-        const p = proj(m.lnglat);
-        return { ...m, x: p[0], y: p[1] };
-      });
-      const src = offices[0];
-      const arcs = metros.map((m) => arc([src.x, src.y], [m.x, m.y]));
-      if (!cancelled) setGeo({ offices, metros, arcs });
-    } catch {
-      if (!cancelled) {
-        const offices = OFFICES.map((o, i) => ({ ...o, x: w * (0.52 + i * 0.06), y: h * (0.42 + i * 0.12) }));
-        setGeo({ offices, metros: [], arcs: [] });
+    const draw = () => {
+      const w = wrap.current ? wrap.current.clientWidth : 620;
+      const h = 468;
+      try {
+        const countries = feature(atlas, atlas.objects.countries);
+        const india = countries.features.find((f) => String(f.id) === "356");
+        if (!india) throw new Error("india not found");
+        const proj = geoMercator().fitExtent([[46, 46], [w - 46, h - 46]], india);
+        const path = geoPath(proj);
+        const others = countries.features.filter((f) => String(f.id) !== "356");
+        const svg =
+          '<svg viewBox="0 0 ' + w + " " + h + '" width="' + w + '" height="' + h + '" style="display:block"><g>' +
+          others.map((f) => '<path d="' + (path(f) || "") + '" fill="rgba(15,42,66,0.04)" stroke="rgba(15,42,66,0.1)" stroke-width="0.5"/>').join("") +
+          '</g><path d="' + (path(india) || "") + '" fill="rgba(239,168,46,0.16)" stroke="#EFA82E" stroke-width="1.4"/></svg>';
+        if (mapRef.current) mapRef.current.innerHTML = svg;
+        const offices = OFFICES.map((o) => {
+          const p = proj(o.lnglat);
+          return { ...o, x: p[0], y: p[1] };
+        });
+        const metros = METROS.map((m) => {
+          const p = proj(m.lnglat);
+          return { ...m, x: p[0], y: p[1] };
+        });
+        const src = offices[0];
+        const arcs = metros.map((m) => arc([src.x, src.y], [m.x, m.y]));
+        if (!cancelled) setGeo({ offices, metros, arcs });
+      } catch {
+        if (!cancelled) {
+          const offices = OFFICES.map((o, i) => ({ ...o, x: w * (0.52 + i * 0.06), y: h * (0.42 + i * 0.12) }));
+          setGeo({ offices, metros: [], arcs: [] });
+        }
       }
-    }
+    };
+    draw();
+    let raf = null;
+    const onResize = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(draw);
+    };
+    window.addEventListener("resize", onResize);
     return () => {
       cancelled = true;
+      window.removeEventListener("resize", onResize);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -64,7 +75,7 @@ export function OfficeMap({ contactChannels } = {}) {
   const mapsHref = cur ? "https://www.google.com/maps/search/" + encodeURIComponent(cur.addr + ", " + cur.region) : "#";
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 16, alignItems: "stretch", height: 470 }}>
+    <div className="rsp-2col office-map-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 16, alignItems: "stretch", height: 470 }}>
       <div
         ref={wrap}
         style={{

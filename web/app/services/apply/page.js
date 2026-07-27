@@ -218,7 +218,7 @@ export default function ServicesApplyPage() {
 
       <NavBar active="services" />
 
-      <section style={{ background: "linear-gradient(155deg,var(--navy-950) 0%,var(--navy-900) 60%,var(--navy-800) 100%)", padding: "56px 32px 96px", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "linear-gradient(155deg,var(--navy-950) 0%,var(--navy-900) 60%,var(--navy-800) 100%)", padding: "clamp(36px, 6vw, 56px) var(--container-pad) clamp(56px, 10vw, 96px)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px)", backgroundSize: "26px 26px", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: -120, left: "-6%", width: 420, height: 420, borderRadius: "50%", background: "radial-gradient(circle,rgba(212,167,71,.18),transparent 66%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: -160, right: "-4%", width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle,rgba(30,64,124,.5),transparent 68%)", pointerEvents: "none" }} />
@@ -251,9 +251,9 @@ export default function ServicesApplyPage() {
         </div>
       </section>
 
-      <section style={{ padding: "0 32px 96px", maxWidth: 1080, margin: "-56px auto 0", position: "relative" }}>
+      <section style={{ padding: "0 var(--container-pad) 96px", maxWidth: 1080, margin: "-56px auto 0", position: "relative" }}>
         {serviceNames === null ? null : sent ? (
-          <div style={{ maxWidth: 640, margin: "0 auto", background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "var(--space-8)", position: "relative", overflow: "hidden", animation: "fade-in-up .55s var(--ease-standard) both" }}>
+          <div style={{ maxWidth: 640, margin: "0 auto", background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "clamp(20px, 5vw, 32px)", position: "relative", overflow: "hidden", animation: "fade-in-up .55s var(--ease-standard) both" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: "linear-gradient(90deg,var(--gold-400),var(--gold-600))" }} />
             <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 230, overflow: "hidden", pointerEvents: "none" }}>
               {Array.from({ length: 18 }).map((_, ci) => {
@@ -319,9 +319,9 @@ export default function ServicesApplyPage() {
             <button onClick={goServices} style={pillBtn(true)}>Browse services →</button>
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 400px", gap: 30, alignItems: "start" }}>
+          <div className="rsp-2col" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 400px", gap: 30, alignItems: "start" }}>
             <div style={{ minWidth: 0 }}>
-              <div style={{ position: "relative", background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 14px 38px rgba(11,31,58,.08)", border: "1px solid var(--ink-100)", padding: "28px 30px 22px", marginBottom: 24, overflow: "hidden" }}>
+              <div style={{ position: "relative", background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 14px 38px rgba(11,31,58,.08)", border: "1px solid var(--ink-100)", padding: "clamp(18px, 4vw, 28px) clamp(14px, 4vw, 30px) clamp(16px, 3vw, 22px)", marginBottom: 24, overflow: "hidden" }}>
                 <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(var(--ink-100) 1px,transparent 1px)", backgroundSize: "20px 20px", opacity: 0.5, pointerEvents: "none" }} />
                 <div style={{ position: "relative", display: "flex", alignItems: "flex-start" }}>
                   <div aria-hidden style={{ position: "absolute", top: 29, left: `${100 / (STEPS.length * 2)}%`, right: `${100 / (STEPS.length * 2)}%`, height: 4, borderRadius: 4, background: "var(--ink-100)", overflow: "hidden" }}>
@@ -343,7 +343,7 @@ export default function ServicesApplyPage() {
                       >
                         <span
                           style={{
-                            position: "relative", width: 58, height: 58, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+                            position: "relative", width: "clamp(40px, 11vw, 58px)", height: "clamp(40px, 11vw, 58px)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
                             background: cur ? "linear-gradient(150deg,var(--navy-950),var(--navy-800))" : done ? "radial-gradient(circle at 35% 28%,#4fd897,var(--status-positive))" : "var(--white)",
                             border: cur ? "none" : done ? "none" : "2px solid var(--ink-100)", color: cur || done ? "#fff" : hov ? "var(--gold-600)" : "var(--ink-300)",
                             boxShadow: cur ? "0 0 0 6px rgba(212,167,71,.20),0 10px 24px rgba(11,31,58,.22)" : done ? "0 8px 22px rgba(52,168,110,.42),inset 0 2px 3px rgba(255,255,255,.4)" : hov ? "0 6px 16px rgba(11,31,58,.12)" : "none",
@@ -364,9 +364,9 @@ export default function ServicesApplyPage() {
                             {i + 1}
                           </span>
                         </span>
-                        <span style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-                          <span style={{ fontFamily: "var(--font-display)", fontSize: 14.5, fontWeight: "var(--weight-semibold)", color: cur || done ? "var(--navy-900)" : "var(--ink-500)", whiteSpace: "nowrap", transition: "color .3s" }}>{label}</span>
-                          <span style={{ fontFamily: "var(--font-mono)", fontSize: 9.5, letterSpacing: ".08em", textTransform: "uppercase", color: cur ? "var(--gold-600)" : done ? "var(--status-positive)" : "var(--ink-300)", transition: "color .3s" }}>{caption}</span>
+                        <span style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, maxWidth: "100%" }}>
+                          <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(11px, 3vw, 14.5px)", fontWeight: "var(--weight-semibold)", color: cur || done ? "var(--navy-900)" : "var(--ink-500)", textAlign: "center", transition: "color .3s" }}>{label}</span>
+                          <span className="rsp-hide-mobile" style={{ fontFamily: "var(--font-mono)", fontSize: 9.5, letterSpacing: ".08em", textTransform: "uppercase", color: cur ? "var(--gold-600)" : done ? "var(--status-positive)" : "var(--ink-300)", transition: "color .3s" }}>{caption}</span>
                         </span>
                       </button>
                     );
@@ -376,7 +376,7 @@ export default function ServicesApplyPage() {
 
               {step === 0 && (
                 <div style={{ animation: "fade-in-up .35s var(--ease-standard) both" }}>
-                  <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.10)", border: "1px solid var(--ink-100)", padding: "32px 32px 28px" }}>
+                  <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.10)", border: "1px solid var(--ink-100)", padding: "clamp(18px, 4vw, 32px) clamp(16px, 4vw, 32px) clamp(16px, 3vw, 28px)" }}>
                     <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)", marginBottom: 3 }}>Here&apos;s what you picked</div>
                     <div style={{ fontFamily: "var(--font-body)", fontSize: 13.5, color: "var(--ink-500)", marginBottom: 20 }}>
                       {serviceNames.length} service{serviceNames.length > 1 ? "s" : ""} across {grouped.length} module{grouped.length > 1 ? "s" : ""}. Add more anytime — nothing is locked in.
@@ -495,7 +495,7 @@ export default function ServicesApplyPage() {
 
               {step === 1 && (
                 <div style={{ animation: "fade-in-up .35s var(--ease-standard) both" }}>
-                  <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.10)", border: "1px solid var(--ink-100)", padding: "32px 32px 28px" }}>
+                  <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.10)", border: "1px solid var(--ink-100)", padding: "clamp(18px, 4vw, 32px) clamp(16px, 4vw, 32px) clamp(16px, 3vw, 28px)" }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap", marginBottom: 2 }}>
                       <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)" }}>Which of these do you have?</div>
                       {totalDocs > 0 && (
@@ -516,7 +516,7 @@ export default function ServicesApplyPage() {
                               </span>
                               <div style={{ fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--gold-600)" }}>{cat.title}</div>
                             </div>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                            <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                               {(cat.docs || []).map((doc) => {
                                 const key = cat.title + "::" + doc;
                                 const on = !!checked[key];
@@ -564,14 +564,14 @@ export default function ServicesApplyPage() {
                     </span>
                     <span style={{ fontFamily: "var(--font-mono)", fontSize: 18, color: "var(--ink-300)" }}>›</span>
                   </a>
-                  <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.10)", border: "1px solid var(--ink-100)", padding: "34px 34px", position: "relative", overflow: "hidden" }}>
+                  <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.10)", border: "1px solid var(--ink-100)", padding: "clamp(18px, 4vw, 34px)", position: "relative", overflow: "hidden" }}>
                     <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: "linear-gradient(90deg,var(--gold-400),var(--gold-600))" }} />
                     <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                       <div>
                         <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)" }}>Where should we reach you?</div>
                         <div style={{ fontFamily: "var(--font-body)", fontSize: 13.5, color: "var(--ink-500)", marginTop: 4 }}>No obligation — an advisor calls to confirm scope, no payment needed to submit.</div>
                       </div>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                      <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                         <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                           <ApplyLabel>Full name</ApplyLabel>
                           <input required value={f.name} onChange={(e) => set("name", e.target.value)} onFocus={foc} onBlur={blur} placeholder="Jane Doe" style={iStyle} />
@@ -624,7 +624,7 @@ export default function ServicesApplyPage() {
               )}
             </div>
 
-            <aside style={{ position: "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18 }}>
+            <aside className="rsp-unstick" style={{ position: "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18 }}>
               <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 20px 45px rgba(11,31,58,.12)", border: "1px solid var(--ink-100)", overflow: "hidden" }}>
                 <div onMouseEnter={() => setHeadHover(true)} onMouseLeave={() => setHeadHover(false)} style={{ position: "relative", overflow: "hidden", padding: "20px 26px 30px", background: "linear-gradient(150deg,var(--gold-300) 0%,var(--gold-500) 52%,var(--gold-600) 100%)", cursor: "default" }}>
                   <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "repeating-linear-gradient(90deg,var(--navy-950) 0 14px,transparent 14px 20px)" }} />

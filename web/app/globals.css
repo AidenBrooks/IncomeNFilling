@@ -20,11 +20,14 @@
   --text-base: 1rem; --leading-base: 1.6rem;
   --text-lg: 1.125rem; --leading-lg: 1.7rem;
   --text-xl: 1.25rem; --leading-xl: 1.7rem;
-  --text-2xl: 1.5rem; --leading-2xl: 1.9rem;
-  --text-3xl: 1.875rem; --leading-3xl: 2.25rem;
-  --text-4xl: 2.375rem; --leading-4xl: 2.7rem;
-  --text-5xl: 3.25rem; --leading-5xl: 3.5rem;
-  --text-6xl: 4rem; --leading-6xl: 4.1rem;
+  /* Fluid scale below here — clamp(min, viewport-relative, max) so headings shrink
+     automatically on narrow screens without per-component breakpoint overrides. */
+  --text-2xl: clamp(1.25rem, 1.05rem + 0.9vw, 1.5rem); --leading-2xl: 1.9rem;
+  --text-3xl: clamp(1.4rem, 1.1rem + 1.4vw, 1.875rem); --leading-3xl: 2.25rem;
+  --text-4xl: clamp(1.6rem, 1.2rem + 1.9vw, 2.375rem); --leading-4xl: 1.25;
+  --text-5xl: clamp(1.9rem, 1.2rem + 3.2vw, 3.25rem); --leading-5xl: 1.14;
+  --text-6xl: clamp(2.1rem, 1.1rem + 4.5vw, 4rem); --leading-6xl: 1.08;
+  --container-pad: clamp(16px, 4vw, 32px);
   --tracking-tight: -.02em; --tracking-normal: 0em; --tracking-wide: .04em; --tracking-widest: .12em;
   --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
 
@@ -89,3 +92,35 @@ button { font: inherit; }
 @keyframes lightningBurst { 0%,62% { transform: scale(.35); opacity: 0; } 72% { transform: scale(1); opacity: .9; } 90%,100% { transform: scale(1.75); opacity: 0; } }
 @keyframes badgeFlash { 0%,64% { opacity: 0; } 72% { opacity: .95; } 82%,100% { opacity: 0; } }
 @keyframes boltGlow { 0%,60% { opacity: .15; } 72% { opacity: .6; } 88%,100% { opacity: .15; } }
+
+/* ---------------------------------------------------------------------
+   Responsive utilities. Inline `style` objects win over plain external
+   rules, so these use !important to collapse fixed-column grids and
+   flex rows on small screens without rewriting every component's style
+   object. Breakpoints: <=640 phone, 641-1024 tablet, >1024 laptop/desktop.
+   --------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .rsp-2col, .rsp-sidebar { grid-template-columns: 1fr !important; }
+  .rsp-sidebar-list { flex-direction: row !important; overflow-x: auto !important; overflow-y: visible !important; border-right: none !important; border-bottom: 1px solid var(--ink-100); }
+  .rsp-sidebar-list > button, .rsp-sidebar-list > a { width: auto !important; }
+  .office-map-grid { height: auto !important; }
+  .office-map-grid > div { height: 380px !important; }
+  .rsp-unstick { position: relative !important; top: auto !important; }
+}
+@media (max-width: 860px) {
+  .rsp-stack { flex-direction: column !important; }
+  .rsp-stack-reverse { flex-direction: column-reverse !important; }
+}
+@media (max-width: 640px) {
+  .rsp-cols-2 { grid-template-columns: 1fr !important; }
+  .rsp-hide-mobile { display: none !important; }
+}
+@media (min-width: 641px) {
+  .rsp-hide-desktop { display: none !important; }
+}
+.nav-hamburger { display: none; }
+@media (max-width: 1024px) {
+  .nav-links { display: none !important; }
+  .nav-cta { display: none !important; }
+  .nav-hamburger { display: inline-flex !important; }
+}

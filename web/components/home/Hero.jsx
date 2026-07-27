@@ -18,7 +18,14 @@ export function Hero() {
   const router = useRouter();
   return (
     <section style={{ position: "relative", background: "var(--white)" }}>
-      <div style={{ position: "relative", maxWidth: "var(--container-max)", margin: "0 auto", display: "grid", gridTemplateColumns: "1.05fr .95fr", gap: 60, alignItems: "center", padding: "72px 32px 80px" }}>
+      <div
+        className="rsp-2col"
+        style={{
+          position: "relative", maxWidth: "var(--container-max)", margin: "0 auto", display: "grid",
+          gridTemplateColumns: "1.05fr .95fr", gap: "clamp(32px, 6vw, 60px)", alignItems: "center",
+          padding: "clamp(44px, 8vw, 72px) clamp(16px, 4vw, 32px) clamp(48px, 8vw, 80px)",
+        }}
+      >
         <div>
           <Eyebrow>All Systems Compliant · Since 2017</Eyebrow>
           <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-6xl)", color: "var(--navy-900)", margin: "20px 0 20px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.06 }}>
@@ -36,11 +43,11 @@ export function Hero() {
           <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-lg)", color: "var(--ink-500)", maxWidth: 460, lineHeight: "var(--leading-lg)", marginBottom: 32 }}>
             A dedicated team handling taxation, GST, incorporation, and corporate law — so your business stays compliant without the busywork.
           </p>
-          <div style={{ display: "flex", gap: 14, marginBottom: 40 }}>
+          <div style={{ display: "flex", gap: 14, marginBottom: 40, flexWrap: "wrap" }}>
             <HeroCTAButton variant="primary" onClick={() => router.push("/contact")}>Book Free Consultation</HeroCTAButton>
             <HeroCTAButton variant="ghost" onClick={() => router.push("/services")}>Explore Services</HeroCTAButton>
           </div>
-          <div style={{ display: "flex", gap: 36 }}>
+          <div style={{ display: "flex", gap: 36, flexWrap: "wrap" }}>
             <div>
               <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-3xl)", color: "var(--navy-900)" }}>
                 <CountUp to={500} suffix="+" />
@@ -61,7 +68,7 @@ export function Hero() {
             </div>
           </div>
         </div>
-        <div style={{ position: "relative", height: 560, width: "100%" }}>
+        <div style={{ position: "relative", height: "clamp(320px, 76vw, 560px)", maxHeight: 560, width: "100%" }}>
           <div style={{ position: "absolute", right: "2%", top: "50%", transform: "translateY(-50%)", width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle at 45% 45%,rgba(239,168,46,.18),rgba(43,108,214,.10) 52%,transparent 72%)" }} />
           <div style={{ position: "absolute", right: "-4%", top: "50%", transform: "translateY(-50%)", width: 500, height: 500, borderRadius: "50%", border: "2px dashed var(--gold-300,#f5cf82)", animation: "spin-slow 46s linear infinite", opacity: 0.7 }} />
           <div style={{ position: "absolute", right: "6%", top: "50%", transform: "translateY(-50%)", width: 360, height: 360, borderRadius: "50%", border: "1.5px solid rgba(43,108,214,.2)", animation: "spin-slow 32s linear infinite reverse" }} />

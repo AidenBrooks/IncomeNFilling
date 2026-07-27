@@ -9,8 +9,8 @@ export function CategoryExplorer({ categories, onSelect }) {
   const accent = ACCENTS[active % 4], tint = TINTS[active % 4];
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "var(--shadow-md)", minHeight: 400 }}>
-      <div style={{ background: "var(--paper-alt)", padding: 12, display: "flex", flexDirection: "column", gap: 4, overflowY: "auto", borderRight: "1px solid var(--ink-100)" }}>
+    <div className="rsp-sidebar" style={{ display: "grid", gridTemplateColumns: "320px 1fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "var(--shadow-md)", minHeight: 400 }}>
+      <div className="rsp-sidebar-list" style={{ background: "var(--paper-alt)", padding: 12, display: "flex", flexDirection: "column", flexWrap: "nowrap", gap: 4, overflowY: "auto", borderRight: "1px solid var(--ink-100)" }}>
         {categories.map((cat, i) => {
           const isActive = active === i;
           const isHovered = hovered === i && !isActive;
@@ -24,7 +24,7 @@ export function CategoryExplorer({ categories, onSelect }) {
                 display: "flex", alignItems: "center", gap: 12, padding: "13px 14px", borderRadius: "var(--radius-md)", border: "none",
                 background: isActive || isHovered ? "var(--white)" : "transparent",
                 boxShadow: isActive ? "var(--shadow-sm)" : isHovered ? "0 1px 4px rgba(15,32,48,.08)" : "none",
-                cursor: "pointer", textAlign: "left", fontFamily: "var(--font-body)",
+                cursor: "pointer", textAlign: "left", fontFamily: "var(--font-body)", flexShrink: 0, whiteSpace: "nowrap",
                 transition: "background var(--duration-fast) var(--ease-standard)",
               }}
             >

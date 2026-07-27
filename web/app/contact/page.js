@@ -44,7 +44,7 @@ export default function ContactPage() {
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
       <NavBar active="contact" />
-      <section style={{ background: "linear-gradient(150deg,var(--navy-950) 0%,var(--navy-900) 55%,var(--navy-800) 100%)", padding: "70px 32px 128px", position: "relative", overflow: "hidden", textAlign: "center" }}>
+      <section style={{ background: "linear-gradient(150deg,var(--navy-950) 0%,var(--navy-900) 55%,var(--navy-800) 100%)", padding: "clamp(48px, 8vw, 70px) var(--container-pad) clamp(72px, 14vw, 128px)", position: "relative", overflow: "hidden", textAlign: "center" }}>
         <div style={{ position: "absolute", top: -80, left: "6%", width: 230, height: 230, borderRadius: 46, background: "radial-gradient(circle,rgba(212,167,71,.3),transparent 68%)", transform: "rotate(-14deg)", animation: "float-y 7s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: 20, right: "10%", width: 130, height: 130, border: "2px dashed rgba(212,167,71,.28)", borderRadius: "50%", transform: "rotate(18deg)", animation: "float-y 5.5s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px)", backgroundSize: "26px 26px", pointerEvents: "none" }} />
@@ -88,12 +88,12 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <section style={{ padding: "0 32px 90px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -80, position: "relative" }}>
+      <section style={{ padding: "0 var(--container-pad) 90px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -80, position: "relative" }}>
         <div style={{ marginBottom: 26 }}>
           <OfficeMap contactChannels={CHANNELS} />
         </div>
         <div id="contact-form" style={{ maxWidth: 820, margin: "0 auto", scrollMarginTop: 90 }}>
-          <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "var(--space-8)", position: "relative", overflow: "hidden", minHeight: 520 }}>
+          <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "clamp(20px, 5vw, 32px)", position: "relative", overflow: "hidden", minHeight: 520 }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: "linear-gradient(90deg,var(--gold-400),var(--gold-600))" }} />
             {sent ? (
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 460, animation: "fade-in-up .4s var(--ease-standard) both" }}>
@@ -148,7 +148,7 @@ export default function ContactPage() {
                     ))}
                   </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                     <Label>Full name</Label>
                     <input required value={f.name} onChange={(e) => set("name", e.target.value)} onFocus={foc} onBlur={blur} placeholder="Jane Doe" style={iStyle} />

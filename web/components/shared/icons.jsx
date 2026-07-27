@@ -41,6 +41,22 @@ export function SearchIcon({ size = 22, color = "var(--ink-300)" }) {
   );
 }
 
+export function MenuIcon({ size = 22, color = "currentColor" }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  );
+}
+
+export function CloseIcon({ size = 22, color = "currentColor" }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
+      <path d="M5 5l14 14M19 5L5 19" />
+    </svg>
+  );
+}
+
 export function CheckCircleIcon({ size = 88, color = "var(--gold-600)" }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

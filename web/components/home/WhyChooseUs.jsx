@@ -40,7 +40,7 @@ function WhyCard({ f, i }) {
 
 export function WhyChooseUs() {
   return (
-    <section style={{ position: "relative", padding: "86px 32px 96px", overflow: "hidden" }}>
+    <section style={{ position: "relative", padding: "clamp(48px, 8vw, 86px) var(--container-pad) clamp(52px, 8vw, 96px)", overflow: "hidden" }}>
       <div
         style={{
           position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(43,108,214,.11) 1px,transparent 1px)", backgroundSize: "28px 28px",
@@ -49,7 +49,7 @@ export function WhyChooseUs() {
       />
       <div style={{ position: "relative", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <SectionHead eyebrow="Why Us" title="Why Businesses Choose Us" sub="Professional, secure, and dependable compliance services — hover any card to explore." />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
           {WHY_CHOOSE_US.map((f, i) => (
             <WhyCard key={f.title} f={f} i={i} />
           ))}
