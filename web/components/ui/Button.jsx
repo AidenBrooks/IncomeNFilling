@@ -4,7 +4,7 @@ import { useState } from "react";
 const PALETTE = {
   primary: { bg: "var(--gold-500)", color: "var(--navy-900)", border: "transparent", hoverBg: "var(--gold-400)" },
   secondary: { bg: "transparent", color: "var(--white)", border: "var(--border-inverse)", hoverBg: "rgba(255,255,255,.08)" },
-  ghost: { bg: "transparent", color: "var(--navy-800)", border: "var(--ink-100)", hoverBg: "var(--paper-alt)" },
+  ghost: { bg: "transparent", color: "var(--navy-800)", border: "var(--ink-100)", hoverBg: "var(--gold-500)", hoverColor: "var(--navy-900)", hoverBorder: "var(--gold-500)" },
 };
 
 export function Button({ children, variant = "primary", size = "md", icon, disabled, onClick, type = "button", fullWidth }) {
@@ -13,6 +13,7 @@ export function Button({ children, variant = "primary", size = "md", icon, disab
   const p = PALETTE[variant] || PALETTE.primary;
   const pad = size === "sm" ? "9px 16px" : "13px 24px";
   const fs = size === "sm" ? "var(--text-sm)" : "var(--text-base)";
+  const isHover = hover && !disabled;
   return (
     <button
       type={type}
@@ -23,11 +24,11 @@ export function Button({ children, variant = "primary", size = "md", icon, disab
       style={{
         display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
         padding: pad, fontFamily: "var(--font-body)", fontWeight: "var(--weight-semibold)", fontSize: fs,
-        borderRadius: "var(--radius-pill)", border: `1px solid ${p.border}`,
-        background: hover && !disabled ? p.hoverBg : p.bg, color: p.color,
+        borderRadius: "var(--radius-pill)", border: `1px solid ${isHover ? (p.hoverBorder || p.border) : p.border}`,
+        background: isHover ? p.hoverBg : p.bg, color: isHover ? (p.hoverColor || p.color) : p.color,
         cursor: disabled ? "not-allowed" : "pointer", opacity: disabled ? 0.5 : 1,
         width: fullWidth ? "100%" : "auto",
-        transition: "background var(--duration-fast) var(--ease-standard)",
+        transition: "background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard)",
       }}
     >
       {icon}

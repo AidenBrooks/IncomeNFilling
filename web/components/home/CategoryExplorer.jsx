@@ -4,29 +4,38 @@ import { ACCENTS, TINTS } from "@/data/theme";
 
 export function CategoryExplorer({ categories, onSelect }) {
   const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState(null);
   const c = categories[active];
   const accent = ACCENTS[active % 4], tint = TINTS[active % 4];
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "var(--shadow-md)", minHeight: 400 }}>
       <div style={{ background: "var(--paper-alt)", padding: 12, display: "flex", flexDirection: "column", gap: 4, overflowY: "auto", borderRight: "1px solid var(--ink-100)" }}>
-        {categories.map((cat, i) => (
-          <button
-            key={cat.title}
-            onClick={() => setActive(i)}
-            style={{
-              display: "flex", alignItems: "center", gap: 12, padding: "13px 14px", borderRadius: "var(--radius-md)", border: "none",
-              background: active === i ? "var(--white)" : "transparent", boxShadow: active === i ? "var(--shadow-sm)" : "none",
-              cursor: "pointer", textAlign: "left", fontFamily: "var(--font-body)",
-            }}
-          >
-            <span style={{ width: 34, height: 34, flexShrink: 0, borderRadius: "var(--radius-md)", background: TINTS[i % 4], color: ACCENTS[i % 4], display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: "var(--weight-semibold)" }}>
-              {cat.icon}
-            </span>
-            <span style={{ fontSize: "var(--text-sm)", fontWeight: active === i ? "var(--weight-semibold)" : "var(--weight-medium)", color: active === i ? "var(--navy-900)" : "var(--ink-700)", flex: 1 }}>{cat.title}</span>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-300)" }}>{cat.count}</span>
-          </button>
-        ))}
+        {categories.map((cat, i) => {
+          const isActive = active === i;
+          const isHovered = hovered === i && !isActive;
+          return (
+            <button
+              key={cat.title}
+              onClick={() => setActive(i)}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
+              style={{
+                display: "flex", alignItems: "center", gap: 12, padding: "13px 14px", borderRadius: "var(--radius-md)", border: "none",
+                background: isActive || isHovered ? "var(--white)" : "transparent",
+                boxShadow: isActive ? "var(--shadow-sm)" : isHovered ? "0 1px 4px rgba(15,32,48,.08)" : "none",
+                cursor: "pointer", textAlign: "left", fontFamily: "var(--font-body)",
+                transition: "background var(--duration-fast) var(--ease-standard)",
+              }}
+            >
+              <span style={{ width: 34, height: 34, flexShrink: 0, borderRadius: "var(--radius-md)", background: TINTS[i % 4], color: ACCENTS[i % 4], display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: "var(--weight-semibold)" }}>
+                {cat.icon}
+              </span>
+              <span style={{ fontSize: "var(--text-sm)", fontWeight: isActive ? "var(--weight-semibold)" : "var(--weight-medium)", color: isActive || isHovered ? "var(--navy-900)" : "var(--ink-700)", flex: 1 }}>{cat.title}</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-300)" }}>{cat.count}</span>
+            </button>
+          );
+        })}
       </div>
       <div style={{ padding: "40px 44px", display: "flex", flexDirection: "column", gap: 16, position: "relative" }}>
         <div style={{ position: "absolute", top: 0, right: 0, width: 160, height: 160, background: tint, opacity: 0.55, borderRadius: "0 0 0 100%" }} />
