@@ -36,7 +36,7 @@
   --shadow-lg: 0 16px 40px rgba(15,32,48,.16);
   --shadow-inverse: 0 12px 32px rgba(0,0,0,.35);
   --border-w: 1px;
-  --container-max: 1200px;
+  --container-max: 1400px;
 
   /* Motion */
   --ease-standard: cubic-bezier(.2,.8,.2,1);
