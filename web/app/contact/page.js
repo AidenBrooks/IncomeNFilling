@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -45,26 +45,45 @@ export default function ContactPage() {
       <WhatsAppButton />
       <NavBar active="contact" />
       <section style={{ background: "linear-gradient(150deg,var(--navy-950) 0%,var(--navy-900) 55%,var(--navy-800) 100%)", padding: "70px 32px 128px", position: "relative", overflow: "hidden", textAlign: "center" }}>
-        <div style={{ position: "absolute", top: -60, left: "8%", width: 200, height: 200, background: "var(--gold-500)", opacity: 0.13, borderRadius: 40, transform: "rotate(-14deg)", animation: "float-y 7s ease-in-out infinite" }} />
-        <div style={{ position: "absolute", bottom: 10, right: "12%", width: 120, height: 120, border: "2px solid rgba(212,167,71,.25)", borderRadius: 26, transform: "rotate(18deg)", animation: "float-y 5.5s ease-in-out infinite" }} />
+        <div style={{ position: "absolute", top: -80, left: "6%", width: 230, height: 230, borderRadius: 46, background: "radial-gradient(circle,rgba(212,167,71,.3),transparent 68%)", transform: "rotate(-14deg)", animation: "float-y 7s ease-in-out infinite", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: 20, right: "10%", width: 130, height: 130, border: "2px dashed rgba(212,167,71,.28)", borderRadius: "50%", transform: "rotate(18deg)", animation: "float-y 5.5s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px)", backgroundSize: "26px 26px", pointerEvents: "none" }} />
-        <div style={{ position: "relative", maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--gold-400)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 16, background: "rgba(212,167,71,.1)", border: "1px solid rgba(212,167,71,.25)", padding: "6px 14px", borderRadius: "var(--radius-pill)" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--status-positive)", animation: "pulse-dot 2s infinite" }} />
-            We usually reply within minutes
+        <div style={{ position: "relative", maxWidth: 780, margin: "0 auto" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 9, fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--gold-400)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 18, background: "rgba(212,167,71,.1)", border: "1px solid rgba(212,167,71,.25)", padding: "6px 15px", borderRadius: "var(--radius-pill)" }}>
+            <span style={{ position: "relative", width: 8, height: 8, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+              <span aria-hidden style={{ position: "absolute", inset: -3, borderRadius: "50%", border: "1.5px solid var(--status-positive)", opacity: 0.5, animation: "pulse-ring 2s infinite" }} />
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--status-positive)" }} />
+            </span>
+            Advisors online · replies in minutes
           </div>
           <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-5xl)", color: "var(--white)", margin: "0 0 14px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.08 }}>
-            Let&apos;s start a <span style={{ color: "var(--gold-400)" }}>conversation</span>
+            Let&apos;s start a <span style={{ color: "var(--gold-400)", whiteSpace: "nowrap" }}>conversation</span>
           </h1>
-          <p style={{ color: "var(--navy-300)", margin: "0 auto", maxWidth: 520, fontFamily: "var(--font-body)", fontSize: "var(--text-lg)", lineHeight: 1.5 }}>
+          <p style={{ color: "var(--navy-300)", margin: "0 auto 30px", maxWidth: 520, fontFamily: "var(--font-body)", fontSize: "var(--text-lg)", lineHeight: 1.5 }}>
             Tell us what you&apos;re working on and the right advisor will take it from here — call, WhatsApp, email or drop by an office.
           </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginTop: 26 }}>
-            {[["1000+", "businesses served"], ["2", "offices, Pan-India"], ["9+", "years of expertise"]].map((s) => (
-              <div key={s[1]} style={{ display: "flex", alignItems: "baseline", gap: 8, background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.1)", borderRadius: "var(--radius-pill)", padding: "9px 18px" }}>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: "var(--gold-400)" }}>{s[0]}</span>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: 12.5, color: "var(--navy-300)" }}>{s[1]}</span>
-              </div>
+          <div style={{ display: "inline-flex", flexWrap: "wrap", gap: 0, justifyContent: "center", alignItems: "center", background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.1)", borderRadius: "var(--radius-pill)", padding: "6px 6px" }}>
+            {[["Free first consultation"], ["Reply within working hours"], ["No obligation, ever"]].map((s, i, arr) => (
+              <Fragment key={s[0]}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", fontFamily: "var(--font-body)", fontSize: 13.5, color: "var(--white)" }}>
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="var(--gold-400)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  {s[0]}
+                </span>
+                {i < arr.length - 1 && <span aria-hidden style={{ width: 1, height: 18, background: "rgba(255,255,255,.14)" }} />}
+              </Fragment>
+            ))}
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 24, justifyContent: "center", marginTop: 30 }}>
+            {[["1000+", "businesses served"], ["2", "offices, Pan-India"], ["9+", "years of expertise"]].map((s, i, arr) => (
+              <Fragment key={s[1]}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 20, color: "var(--gold-400)" }}>{s[0]}</span>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: 12.5, color: "var(--navy-300)" }}>{s[1]}</span>
+                </div>
+                {i < arr.length - 1 && <span aria-hidden style={{ width: 1, height: 22, background: "rgba(255,255,255,.14)" }} />}
+              </Fragment>
             ))}
           </div>
         </div>
@@ -73,7 +92,7 @@ export default function ContactPage() {
         <div style={{ marginBottom: 26 }}>
           <OfficeMap contactChannels={CHANNELS} />
         </div>
-        <div style={{ maxWidth: 820, margin: "0 auto" }}>
+        <div id="contact-form" style={{ maxWidth: 820, margin: "0 auto", scrollMarginTop: 90 }}>
           <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "var(--space-8)", position: "relative", overflow: "hidden", minHeight: 520 }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: "linear-gradient(90deg,var(--gold-400),var(--gold-600))" }} />
             {sent ? (

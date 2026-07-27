@@ -2,9 +2,8 @@
 import { useState } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroCTAButton } from "@/components/ui/HeroCTAButton";
-import { CallIcon, WhatsAppIcon, EmailIcon } from "@/components/shared/icons";
 import { HOME_CATEGORIES } from "@/data/categories";
-import { WHATSAPP_URL, PHONE_DISPLAY, PHONE_HREF, EMAIL } from "@/data/content";
+import { WHATSAPP_URL } from "@/data/content";
 
 function CField({ tag = "input", children, ...props }) {
   const [f, setF] = useState(false);
@@ -26,12 +25,6 @@ function CField({ tag = "input", children, ...props }) {
     </Tag>
   );
 }
-
-const METHODS = [
-  { k: "Call us", v: PHONE_DISPLAY, href: PHONE_HREF, icon: <CallIcon size={18} color="var(--gold-400)" /> },
-  { k: "WhatsApp", v: "Chat instantly", href: WHATSAPP_URL, wa: true, icon: <WhatsAppIcon size={18} color="var(--white)" /> },
-  { k: "Email us", v: EMAIL, href: `mailto:${EMAIL}`, icon: <EmailIcon size={18} color="var(--gold-400)" /> },
-];
 
 export function ContactCTA() {
   const [sent, setSent] = useState(false);
@@ -66,30 +59,24 @@ export function ContactCTA() {
               </div>
               <div style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "rgba(15,42,66,.72)", marginTop: 8, maxWidth: 280 }}>A quick question or a full compliance plan — reach us however suits you best.</div>
             </div>
-            <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 10 }}>
-              {METHODS.map((m) => (
-                <a
-                  key={m.k}
-                  href={m.href}
-                  target={m.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateX(4px)";
-                    e.currentTarget.style.boxShadow = "var(--shadow-md)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "none";
-                    e.currentTarget.style.boxShadow = "var(--shadow-sm)";
-                  }}
-                  style={{ display: "flex", alignItems: "center", gap: 13, padding: "12px 14px", borderRadius: "var(--radius-lg)", background: "var(--white)", boxShadow: "var(--shadow-sm)", textDecoration: "none", transition: "all .2s var(--ease-standard)" }}
-                >
-                  <span style={{ width: 38, height: 38, flexShrink: 0, borderRadius: "50%", background: m.wa ? "var(--whatsapp-green)" : "var(--navy-900)", display: "flex", alignItems: "center", justifyContent: "center" }}>{m.icon}</span>
-                  <span style={{ flex: 1, minWidth: 0 }}>
-                    <span style={{ display: "block", fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--gold-600,#c9820f)" }}>{m.k}</span>
-                    <span style={{ display: "block", fontFamily: "var(--font-body)", fontWeight: "var(--weight-semibold)", fontSize: 13.5, color: "var(--navy-900)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.v}</span>
-                  </span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 15, color: "var(--ink-300)" }}>›</span>
-                </a>
+            <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 0 }}>
+              {[
+                { t: "You reach out", d: "Send the form — takes about a minute." },
+                { t: "A real advisor replies", d: "Not a bot. A person who scopes your need." },
+                { t: "We map your next step", d: "A clear plan, no obligation to proceed." },
+              ].map((s, i, arr) => (
+                <div key={s.t} style={{ display: "flex", gap: 15, alignItems: "flex-start" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
+                    <span style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--navy-950)", color: "var(--gold-400)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14, boxShadow: "0 4px 12px rgba(15,42,66,.25)" }}>
+                      {i + 1}
+                    </span>
+                    {i < arr.length - 1 && <span style={{ width: 2, flex: 1, minHeight: 22, background: "repeating-linear-gradient(to bottom,rgba(15,42,66,.35) 0 4px,transparent 4px 9px)" }} />}
+                  </div>
+                  <div style={{ paddingBottom: i < arr.length - 1 ? 18 : 0 }}>
+                    <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: 15, color: "var(--navy-950)", lineHeight: 1.2 }}>{s.t}</div>
+                    <div style={{ fontFamily: "var(--font-body)", fontSize: 12.5, color: "rgba(15,42,66,.7)", marginTop: 2, lineHeight: 1.4 }}>{s.d}</div>
+                  </div>
+                </div>
               ))}
             </div>
             <div style={{ position: "relative", marginTop: "auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", paddingTop: 18, borderTop: "1px solid rgba(15,42,66,.16)" }}>

@@ -19,9 +19,13 @@ export function ITRPromo() {
           <div>
             <HeroCTAButton variant="primary" onClick={() => router.push("/contact")}>Start Filing Now</HeroCTAButton>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, background: "var(--white)", borderRadius: "var(--radius-lg)", padding: "12px 18px", boxShadow: "var(--shadow-sm)", maxWidth: 400 }}>
+          <div style={{ position: "relative", overflow: "hidden", display: "flex", alignItems: "center", gap: 14, background: "var(--white)", borderRadius: "var(--radius-lg)", padding: "12px 18px", boxShadow: "var(--shadow-sm)", maxWidth: 400, border: "1.5px solid transparent" }}>
+            <span aria-hidden style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 60, background: "linear-gradient(100deg,transparent,rgba(255,255,255,.85),transparent)", animation: "npSheen 3.6s var(--ease-standard) infinite", pointerEvents: "none" }} />
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3, paddingRight: 14, borderRight: "1px solid var(--ink-100)" }}>
-              <span style={{ width: 26, height: 26, borderRadius: 6, background: "var(--navy-050)", color: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>🛡</span>
+              <span style={{ position: "relative", overflow: "hidden", width: 26, height: 26, borderRadius: 6, background: "var(--navy-050)", color: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, animation: "npShieldGlow 2.6s ease-in-out infinite" }}>
+                🛡
+                <span aria-hidden style={{ position: "absolute", top: -4, bottom: -4, left: 0, width: 10, background: "linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent)", animation: "npShieldShine 3.6s var(--ease-standard) infinite", pointerEvents: "none" }} />
+              </span>
               <span style={{ fontFamily: "var(--font-mono)", fontSize: 8, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--navy-700)", fontWeight: "var(--weight-semibold)", textAlign: "center" }}>
                 Notice
                 <br />

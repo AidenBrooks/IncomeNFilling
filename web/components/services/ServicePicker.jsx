@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ServiceIcon } from "@/components/shared/icons";
 import { HUB_CATEGORIES, GROUP_ACCENT, GROUP_TINT } from "@/data/categories";
-import { saveSelection } from "@/lib/selectionStorage";
+import { saveSelection, clearSelection } from "@/lib/selectionStorage";
 
 export function ServicePicker({ startCat, selected, setSelected, onClose }) {
   const router = useRouter();
@@ -130,7 +130,13 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
             </div>
             <div style={{ display: "flex", gap: 10 }}>
               {totalSel > 0 && (
-                <button onClick={() => setSelected({})} style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: "var(--weight-semibold)", padding: "11px 18px", borderRadius: "var(--radius-pill)", border: "1px solid var(--ink-100)", background: "var(--white)", color: "var(--ink-500)", cursor: "pointer" }}>
+                <button
+                  onClick={() => {
+                    setSelected({});
+                    clearSelection();
+                  }}
+                  style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: "var(--weight-semibold)", padding: "11px 18px", borderRadius: "var(--radius-pill)", border: "1px solid var(--ink-100)", background: "var(--white)", color: "var(--ink-500)", cursor: "pointer" }}
+                >
                   Clear
                 </button>
               )}

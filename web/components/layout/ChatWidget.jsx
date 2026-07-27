@@ -17,7 +17,7 @@ export function ChatWidget() {
   ];
 
   return (
-    <div style={{ position: "fixed", bottom: 26, right: 26, zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 14 }}>
+    <div style={{ position: "fixed", bottom: 26, right: 26, zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 26 }}>
       {open && (
         <div style={{ width: 270, background: "var(--white)", borderRadius: "var(--radius-lg)", boxShadow: "var(--shadow-lg)", border: "1px solid var(--ink-100)", overflow: "hidden", animation: "fade-in-up .25s var(--ease-standard)" }}>
           <div style={{ background: "var(--navy-900)", padding: "16px 18px", display: "flex", alignItems: "center", gap: 12 }}>

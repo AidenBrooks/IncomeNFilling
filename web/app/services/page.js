@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,7 +8,7 @@ import { ServiceCard } from "@/components/services/ServiceCard";
 import { ServicePicker } from "@/components/services/ServicePicker";
 import { SearchIcon } from "@/components/shared/icons";
 import { HUB_CATEGORIES, GROUPS, GROUP_ACCENT } from "@/data/categories";
-import { saveSelection } from "@/lib/selectionStorage";
+import { saveSelection, loadSelection, clearSelection } from "@/lib/selectionStorage";
 
 export default function ServicesPage() {
   const router = useRouter();
@@ -18,6 +18,15 @@ export default function ServicesPage() {
   const [focus, setFocus] = useState(false);
   const [picker, setPicker] = useState(null);
   const [selected, setSelected] = useState({});
+
+  useEffect(() => {
+    const o = {};
+    loadSelection().forEach((s) => {
+      o[s] = true;
+    });
+    const id = requestAnimationFrame(() => setSelected(o));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   let filtered = HUB_CATEGORIES.filter(
     (c) =>
@@ -174,7 +183,15 @@ export default function ServicesPage() {
           >
             Request quote →
           </button>
-          <button onClick={() => setSelected({})} style={{ width: 30, height: 30, borderRadius: "50%", border: "1px solid rgba(255,255,255,.2)", background: "transparent", color: "var(--navy-300)", cursor: "pointer", fontSize: 16, lineHeight: 1 }}>×</button>
+          <button
+            onClick={() => {
+              setSelected({});
+              clearSelection();
+            }}
+            style={{ width: 30, height: 30, borderRadius: "50%", border: "1px solid rgba(255,255,255,.2)", background: "transparent", color: "var(--navy-300)", cursor: "pointer", fontSize: 16, lineHeight: 1 }}
+          >
+            ×
+          </button>
         </div>
       )}
       {picker !== null && <ServicePicker startCat={picker} selected={selected} setSelected={setSelected} onClose={() => setPicker(null)} />}

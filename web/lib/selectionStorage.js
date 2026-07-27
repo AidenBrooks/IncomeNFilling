@@ -1,20 +1,25 @@
-// Carries the picked-services selection from the Services Hub picker to the /services/apply
-// intake page. sessionStorage only (not meant to be a shareable/bookmarkable URL).
+// Carries the picked-services selection from the Services Hub (picker + floating bar)
+// to the /services/apply wizard, and lets the Hub restore a prior in-progress selection
+// on return. localStorage (not sessionStorage) so it survives across tabs/visits until
+// the request is actually submitted or cleared.
 
-const KEY = "inf_selected_services";
+const KEY = "inf_selection";
 
-export function saveSelection(selectedMap) {
+export function saveSelection(selectedMapOrNames) {
+  const names = Array.isArray(selectedMapOrNames) ? selectedMapOrNames : Object.keys(selectedMapOrNames);
   try {
-    sessionStorage.setItem(KEY, JSON.stringify(Object.keys(selectedMap)));
+    if (names.length) localStorage.setItem(KEY, JSON.stringify(names));
+    else localStorage.removeItem(KEY);
   } catch {
-    // sessionStorage unavailable (e.g. private mode) — selection just won't carry over.
+    // localStorage unavailable (e.g. private mode) — selection just won't carry over.
   }
 }
 
 export function loadSelection() {
   try {
-    const raw = sessionStorage.getItem(KEY);
-    return raw ? JSON.parse(raw) : [];
+    const raw = localStorage.getItem(KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
   } catch {
     return [];
   }
@@ -22,7 +27,7 @@ export function loadSelection() {
 
 export function clearSelection() {
   try {
-    sessionStorage.removeItem(KEY);
+    localStorage.removeItem(KEY);
   } catch {
     // no-op
   }
