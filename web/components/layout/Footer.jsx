@@ -116,10 +116,10 @@ export function Footer() {
             © {new Date().getFullYear()} Income N Filing. All rights reserved.
           </div>
           <div style={{ display: "flex", gap: 22 }}>
-            {["Privacy Policy", "Terms of Service"].map((x) => (
-              <a key={x} href="#" style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--navy-300)", textDecoration: "none" }}>
-                {x}
-              </a>
+            {[["Privacy Policy", "privacy"], ["Terms & Conditions", "terms"]].map(([label, hash]) => (
+              <Link key={label} href={`/legal#${hash}`} style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--navy-300)", textDecoration: "none" }}>
+                {label}
+              </Link>
             ))}
           </div>
         </div>
