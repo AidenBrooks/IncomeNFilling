@@ -145,7 +145,7 @@ export default function ServicesPage() {
           )}
         </div>
         {filtered.length > 0 ? (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+          <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
             {filtered.map((c, i) => (
               <ServiceCard key={c.title} c={c} i={i} selCount={catSelCount(c)} onClick={() => setPicker(HUB_CATEGORIES.indexOf(c))} />
             ))}

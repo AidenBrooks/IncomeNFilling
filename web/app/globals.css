@@ -111,8 +111,12 @@ button { font: inherit; }
   .rsp-stack { flex-direction: column !important; }
   .rsp-stack-reverse { flex-direction: column-reverse !important; }
 }
+@media (max-width: 1024px) {
+  .rsp-cols-3 { grid-template-columns: repeat(2, 1fr) !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+}
 @media (max-width: 640px) {
-  .rsp-cols-2 { grid-template-columns: 1fr !important; }
+  .rsp-cols-2, .rsp-cols-3, .footer-grid { grid-template-columns: 1fr !important; }
   .rsp-hide-mobile { display: none !important; }
 }
 @media (min-width: 641px) {
