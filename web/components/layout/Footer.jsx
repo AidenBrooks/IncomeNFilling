@@ -24,7 +24,7 @@ export function Footer() {
   ];
 
   return (
-    <footer style={{ background: "var(--navy-950)", color: "var(--white)", padding: "clamp(40px, 8vw, 64px) var(--container-pad) 26px", position: "relative", overflow: "hidden" }}>
+    <footer className="footer-section" style={{ background: "var(--navy-950)", color: "var(--white)", padding: "64px 32px 26px", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: -80, left: -40, width: 260, height: 260, borderRadius: "50%", background: "var(--gold-500)", opacity: 0.06 }} />
       <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", position: "relative" }}>
         <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1.2fr", gap: 40, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,.1)" }}>

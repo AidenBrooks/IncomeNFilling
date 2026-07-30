@@ -11,7 +11,7 @@ function HL({ c, children }) {
 export function About() {
   const [hovImg, setHovImg] = useState(false);
   return (
-    <section id="about" style={{ position: "relative", background: "var(--white)", padding: "clamp(56px, 10vw, 100px) clamp(16px, 4vw, 32px)", overflow: "hidden" }}>
+    <section id="about" className="about-section" style={{ position: "relative", background: "var(--white)", padding: "100px 32px", overflow: "hidden" }}>
       <div
         style={{
           position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(43,108,214,.13) 1px,transparent 1px)", backgroundSize: "26px 26px",
@@ -19,7 +19,7 @@ export function About() {
         }}
       />
       <div style={{ position: "absolute", top: -140, left: -120, width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle,rgba(239,168,46,.12),transparent 66%)", pointerEvents: "none" }} />
-      <div className="rsp-2col" style={{ position: "relative", maxWidth: "var(--container-max)", margin: "0 auto", display: "grid", gridTemplateColumns: "1.02fr .98fr", gap: "clamp(32px, 6vw, 64px)", alignItems: "center" }}>
+      <div className="rsp-2col about-grid" style={{ position: "relative", maxWidth: "var(--container-max)", margin: "0 auto", display: "grid", gridTemplateColumns: "1.02fr .98fr", gap: 64, alignItems: "center" }}>
         <div>
           <Eyebrow>Who We Are</Eyebrow>
           <h2 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-4xl)", color: "var(--navy-900)", margin: "18px 0 22px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.08 }}>
@@ -58,7 +58,7 @@ export function About() {
             </div>
           </div>
         </div>
-        <div style={{ position: "relative", height: "clamp(340px, 72vw, 520px)", maxHeight: 520 }}>
+        <div className="hide-below-desktop" style={{ position: "relative", height: 520 }}>
           <div style={{ position: "absolute", right: 12, top: 24, bottom: 24, width: "74%", borderRadius: "var(--radius-xl)", background: "linear-gradient(150deg,var(--navy-050),#dbe6fb)" }} />
           <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 210, height: 210, borderRadius: "50%", border: "2px dashed var(--gold-300,#f5cf82)", animation: "spin-slow 40s linear infinite", pointerEvents: "none" }} />
           <div

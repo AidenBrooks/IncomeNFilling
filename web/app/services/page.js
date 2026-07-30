@@ -49,7 +49,7 @@ export default function ServicesPage() {
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
       <NavBar active="services" />
-      <section style={{ background: "linear-gradient(150deg,var(--navy-950) 40%,var(--navy-800,#1c3a5e))", padding: "clamp(44px, 8vw, 66px) var(--container-pad) clamp(80px, 14vw, 120px)", position: "relative", overflow: "hidden" }}>
+      <section className="services-hero-section" style={{ background: "linear-gradient(150deg,var(--navy-950) 40%,var(--navy-800,#1c3a5e))", padding: "66px 32px 120px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px)", backgroundSize: "26px 26px", opacity: 0.6 }} />
         <div style={{ position: "absolute", top: -70, right: "6%", width: 280, height: 280, background: "var(--gold-500)", opacity: 0.16, borderRadius: 46, transform: "rotate(18deg)" }} />
         <div style={{ position: "absolute", bottom: -90, left: "-4%", width: 320, height: 320, borderRadius: "50%", border: "2px dashed rgba(255,255,255,.12)", animation: "spin-slow 50s linear infinite" }} />
@@ -58,7 +58,7 @@ export default function ServicesPage() {
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--status-positive)", animation: "pulse-dot 2s infinite" }} />
             Services Directory
           </div>
-          <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-5xl)", color: "var(--white)", margin: "0 0 12px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.08 }}>
+          <h1 className="services-hero-h1" style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-5xl)", color: "var(--white)", margin: "0 0 12px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.08 }}>
             Find the right service
             <br />
             in <span style={{ color: "var(--gold-400)" }}>seconds</span>.

@@ -40,7 +40,7 @@ function WhyCard({ f, i }) {
 
 export function WhyChooseUs() {
   return (
-    <section style={{ position: "relative", padding: "clamp(48px, 8vw, 86px) var(--container-pad) clamp(52px, 8vw, 96px)", overflow: "hidden" }}>
+    <section style={{ position: "relative", padding: "86px 32px 96px", overflow: "hidden" }}>
       <div
         style={{
           position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(43,108,214,.11) 1px,transparent 1px)", backgroundSize: "28px 28px",

@@ -42,7 +42,7 @@ export default function LiveChatPage() {
     <div style={{ background: "var(--navy-050)", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <WhatsAppButton />
       <NavBar active="chat" />
-      <section style={{ flex: 1, padding: "clamp(24px, 5vw, 44px) var(--container-pad) clamp(36px, 6vw, 64px)" }}>
+      <section style={{ flex: 1, padding: "44px 24px 64px" }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 26 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 15px", borderRadius: "var(--radius-pill)", background: "var(--white)", border: "1px solid var(--ink-100)", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--navy-700)", marginBottom: 14 }}>
@@ -52,7 +52,7 @@ export default function LiveChatPage() {
             <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-4xl)", color: "var(--navy-900)", margin: "0 0 8px", letterSpacing: "var(--tracking-tight)" }}>Meet Ira, your compliance concierge</h1>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-base)", color: "var(--ink-500)", margin: "0 auto", maxWidth: 460 }}>Ask anything about GST, tax, company setup or notices. Ira finds the right service in seconds — then a real advisor takes over.</p>
           </div>
-          <div style={{ borderRadius: 22, overflow: "hidden", boxShadow: "0 30px 70px rgba(6,18,36,.32)", display: "flex", flexDirection: "column", height: "clamp(460px, 78vh, 620px)", border: "1px solid rgba(255,255,255,.5)", background: "var(--white)" }}>
+          <div className="chat-box" style={{ borderRadius: 22, overflow: "hidden", boxShadow: "0 30px 70px rgba(6,18,36,.32)", display: "flex", flexDirection: "column", height: 620, border: "1px solid rgba(255,255,255,.5)", background: "var(--white)" }}>
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14, padding: "18px 20px", background: "linear-gradient(135deg,var(--gold-400) 0%,var(--gold-500) 58%,#DA9A1E 100%)", overflow: "hidden" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(130% 150% at 88% -30%,rgba(255,255,255,.5),transparent 55%)", pointerEvents: "none" }} />
               <div style={{ position: "absolute", bottom: -40, left: -30, width: 190, height: 190, borderRadius: "50%", background: "radial-gradient(circle,rgba(11,31,58,.09),transparent 70%)", pointerEvents: "none" }} />

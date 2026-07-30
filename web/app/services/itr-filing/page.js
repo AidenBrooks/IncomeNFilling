@@ -32,7 +32,7 @@ export default function ITRFilingPage() {
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
       <NavBar active="services" />
-      <section style={{ padding: "clamp(36px, 6vw, 56px) var(--container-pad) clamp(48px, 8vw, 90px)", maxWidth: "var(--container-max)", margin: "0 auto" }}>
+      <section className="itr-detail-section" style={{ padding: "56px 32px 90px", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-xs)", color: "var(--ink-500)", marginBottom: 16 }}>
           services / income-tax / <span style={{ color: "var(--navy-900)" }}>itr-filing</span>
         </div>
@@ -62,7 +62,7 @@ export default function ITRFilingPage() {
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)", marginBottom: 20 }}>Frequently asked</h2>
             <Accordion defaultOpenIndex={0} items={FAQ} />
           </div>
-          <div className="rsp-unstick" style={{ position: "sticky", top: 24, background: "var(--navy-900)", borderRadius: "var(--radius-xl)", padding: 32, color: "var(--white)", overflow: "hidden" }}>
+          <div className="rsp-unstick itr-cta-card" style={{ position: "sticky", top: 24, background: "var(--navy-900)", borderRadius: "var(--radius-xl)", padding: 32, color: "var(--white)", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: -40, right: -40, width: 150, height: 150, background: "var(--gold-500)", opacity: 0.15, borderRadius: "50%" }} />
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "var(--tracking-widest)", textTransform: "uppercase", color: "var(--gold-400)", marginBottom: 10, position: "relative" }}>Get started</div>
             <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-xl)", marginBottom: 14, position: "relative" }}>Book your ITR filing</div>

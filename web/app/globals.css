@@ -20,14 +20,12 @@
   --text-base: 1rem; --leading-base: 1.6rem;
   --text-lg: 1.125rem; --leading-lg: 1.7rem;
   --text-xl: 1.25rem; --leading-xl: 1.7rem;
-  /* Fluid scale below here — clamp(min, viewport-relative, max) so headings shrink
-     automatically on narrow screens without per-component breakpoint overrides. */
-  --text-2xl: clamp(1.25rem, 1.05rem + 0.9vw, 1.5rem); --leading-2xl: 1.9rem;
-  --text-3xl: clamp(1.4rem, 1.1rem + 1.4vw, 1.875rem); --leading-3xl: 2.25rem;
-  --text-4xl: clamp(1.6rem, 1.2rem + 1.9vw, 2.375rem); --leading-4xl: 1.25;
-  --text-5xl: clamp(1.9rem, 1.2rem + 3.2vw, 3.25rem); --leading-5xl: 1.14;
-  --text-6xl: clamp(2.1rem, 1.1rem + 4.5vw, 4rem); --leading-6xl: 1.08;
-  --container-pad: clamp(16px, 4vw, 32px);
+  --text-2xl: 1.5rem; --leading-2xl: 1.9rem;
+  --text-3xl: 1.875rem; --leading-3xl: 2.25rem;
+  --text-4xl: 2.375rem; --leading-4xl: 2.7rem;
+  --text-5xl: 3.25rem; --leading-5xl: 3.5rem;
+  --text-6xl: 4rem; --leading-6xl: 4.1rem;
+  --container-pad: 32px;
   --tracking-tight: -.02em; --tracking-normal: 0em; --tracking-wide: .04em; --tracking-widest: .12em;
   --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
 
@@ -101,12 +99,20 @@ button { font: inherit; }
    --------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .rsp-2col, .rsp-sidebar { grid-template-columns: 1fr !important; }
-  .rsp-sidebar-list { flex-direction: row !important; overflow-x: auto !important; overflow-y: visible !important; border-right: none !important; border-bottom: 1px solid var(--ink-100); }
+  .hero-text-block { text-align: center !important; }
+  .hero-text-block p { margin-left: auto !important; margin-right: auto !important; }
+  .hero-cta-row, .hero-stats-row { justify-content: center !important; }
+  .rsp-sidebar-list { flex-direction: row !important; gap: 8px !important; overflow-x: auto !important; overflow-y: visible !important; border-right: none !important; border-bottom: 1px solid var(--ink-100); }
   .rsp-sidebar-list > button, .rsp-sidebar-list > a { width: auto !important; }
   .office-map-grid { height: auto !important; }
   .office-map-grid > div { height: 380px !important; }
   .rsp-unstick { position: relative !important; top: auto !important; }
   .rsp-order-first { order: -1 !important; }
+  .category-explorer-grid { min-height: 0 !important; }
+  .hide-below-desktop { display: none !important; }
+  .hero-illustration { height: 460px !important; max-width: 440px !important; margin: 0 auto !important; }
+  .hero-badge { width: 46px !important; height: 46px !important; }
+  .hero-servicefinder { top: 7% !important; width: 74% !important; min-width: 248px !important; }
 }
 @media (max-width: 860px) {
   .rsp-stack { flex-direction: column !important; }
@@ -121,6 +127,36 @@ button { font: inherit; }
   .rsp-hide-mobile { display: none !important; }
   .client-flip-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
   .client-flip-grid > div { width: 100% !important; }
+  .hero-section-grid { gap: 32px !important; padding: 40px 20px 48px !important; }
+  .hero-h1 { font-size: var(--text-4xl) !important; }
+  .hero-stats-row { gap: 24px !important; }
+  .hero-illustration { height: 420px !important; max-width: 380px !important; margin: 0 auto !important; }
+  .footer-section { padding: 48px 20px 24px !important; }
+  .footer-grid { gap: 32px !important; }
+  .about-section { padding: 64px 20px !important; }
+  .about-grid { gap: 36px !important; }
+  .category-explorer-content { padding: 26px 22px !important; }
+  .contact-cta-section { padding: 64px 20px !important; }
+  .itr-section { padding: 20px 20px 64px !important; }
+  .itr-content { padding: 40px 24px !important; }
+  .itr-h2 { font-size: var(--text-3xl) !important; }
+  .itr-image { min-height: 260px !important; }
+  .itr-img-el { object-position: center 32% !important; }
+  .contact-hero-section { padding: 48px 20px 116px !important; }
+  .contact-hero-h1 { font-size: var(--text-4xl) !important; }
+  .contact-form-card { padding: 28px 22px !important; }
+  .chat-box { height: 76vh !important; }
+  .itr-detail-section { padding: 32px 20px 64px !important; }
+  .itr-cta-card { padding: 24px !important; }
+  .services-hero-section { padding: 44px 20px 110px !important; }
+  .services-hero-h1 { font-size: var(--text-4xl) !important; }
+  .apply-wa-btn { width: 52px !important; height: 52px !important; bottom: 16px !important; right: 16px !important; }
+  .legal-hero { padding: 44px 20px !important; }
+  .legal-h1 { font-size: var(--text-2xl) !important; }
+  .legal-h2 { font-size: var(--text-lg) !important; }
+  .legal-content { padding: 32px 20px 72px !important; }
+  .legal-consent-box { padding: 16px 18px !important; }
+  .hero-illustration-inner { height: 420px !important; max-width: 380px !important; }
 }
 @media (min-width: 641px) {
   .rsp-hide-desktop { display: none !important; }

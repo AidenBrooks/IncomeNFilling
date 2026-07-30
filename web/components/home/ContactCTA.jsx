@@ -30,7 +30,7 @@ export function ContactCTA() {
   const [sent, setSent] = useState(false);
 
   return (
-    <section id="contact" style={{ padding: "clamp(48px, 8vw, 96px) var(--container-pad)", background: "var(--white)", position: "relative", overflow: "hidden" }}>
+    <section id="contact" className="contact-cta-section" style={{ padding: "96px 32px", background: "var(--white)", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(43,108,214,.16) 1px,transparent 1px)", backgroundSize: "26px 26px", opacity: 0.7 }} />
       <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)", width: 560, height: 340, background: "radial-gradient(circle,rgba(239,168,46,.14),transparent 68%)" }} />
       <div style={{ position: "relative", maxWidth: 1060, margin: "0 auto" }}>

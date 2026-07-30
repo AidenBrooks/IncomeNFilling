@@ -9,7 +9,7 @@ export function CategoryExplorer({ categories, onSelect }) {
   const accent = ACCENTS[active % 4], tint = TINTS[active % 4];
 
   return (
-    <div className="rsp-sidebar" style={{ display: "grid", gridTemplateColumns: "320px 1fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "var(--shadow-md)", minHeight: 400 }}>
+    <div className="rsp-sidebar category-explorer-grid" style={{ display: "grid", gridTemplateColumns: "320px 1fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "var(--shadow-md)", minHeight: 400 }}>
       <div className="rsp-sidebar-list" style={{ background: "var(--paper-alt)", padding: 12, display: "flex", flexDirection: "column", flexWrap: "nowrap", gap: 4, overflowY: "auto", borderRight: "1px solid var(--ink-100)" }}>
         {categories.map((cat, i) => {
           const isActive = active === i;
@@ -37,7 +37,7 @@ export function CategoryExplorer({ categories, onSelect }) {
           );
         })}
       </div>
-      <div style={{ padding: "40px 44px", display: "flex", flexDirection: "column", gap: 16, position: "relative" }}>
+      <div className="category-explorer-content" style={{ padding: "40px 44px", display: "flex", flexDirection: "column", gap: 16, position: "relative" }}>
         <div style={{ position: "absolute", top: 0, right: 0, width: 160, height: 160, background: tint, opacity: 0.55, borderRadius: "0 0 0 100%" }} />
         <div key={active} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 16, animation: "fade-in-up .35s var(--ease-standard)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
