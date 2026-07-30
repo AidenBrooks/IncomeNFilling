@@ -12,7 +12,7 @@ import { ClientFlipGrid } from "@/components/home/ClientFlipGrid";
 import { ReviewMarquee } from "@/components/home/ReviewMarquee";
 import { ITRPromo } from "@/components/home/ITRPromo";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { SectionHead } from "@/components/ui/Eyebrow";
+import { Eyebrow, SectionHead } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
 import { OfficeMap } from "@/components/shared/OfficeMap";
@@ -31,12 +31,10 @@ export default function HomePage() {
       <Hero />
       <About />
 
-      <section style={{ padding: "90px var(--container-pad)", maxWidth: "var(--container-max)", margin: "0 auto" }}>
+      <section style={{ padding: "90px 32px", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 32, flexWrap: "wrap", gap: 12 }}>
           <div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "var(--tracking-widest)", textTransform: "uppercase", color: "var(--navy-700)", background: "var(--navy-050)", display: "inline-flex", padding: "6px 16px", borderRadius: "var(--radius-pill)" }}>
-              Modules
-            </div>
+            <Eyebrow>Modules</Eyebrow>
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-3xl)", color: "var(--navy-900)", margin: "16px 0 0" }}>Service Categories</h2>
           </div>
           <Button variant="ghost" onClick={goServices}>View all 94 services</Button>
@@ -44,7 +42,7 @@ export default function HomePage() {
         <CategoryExplorer categories={HOME_CATEGORIES} onSelect={goServices} />
       </section>
 
-      <section style={{ position: "relative", background: "var(--paper-alt)", padding: "90px var(--container-pad)" }}>
+      <section style={{ position: "relative", background: "var(--paper-alt)", padding: "90px 32px" }}>
         <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
           <SectionHead eyebrow="Simple Process" title="How It Works" sub="Three steps between not compliant and fully covered — hover or tap to explore." />
           <Stepper />
@@ -53,7 +51,7 @@ export default function HomePage() {
 
       <WhyChooseUs />
 
-      <section style={{ padding: "80px var(--container-pad) 90px" }}>
+      <section style={{ padding: "80px 32px 90px" }}>
         <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
           <SectionHead eyebrow="And Many More" title="Our Clients" sub="As a client, it matters who handles your compliance — here's who trusts us. Watch the cards flip, hover to hold." />
           <ClientFlipGrid />
@@ -61,18 +59,18 @@ export default function HomePage() {
       </section>
 
       <section id="testimonials" style={{ background: "var(--navy-050)", padding: "90px 0" }}>
-        <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", padding: "0 var(--container-pad)" }}>
+        <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", padding: "0 32px" }}>
           <SectionHead eyebrow="Client Stories" title="What Our Clients Say" sub="★★★★★ Rated 4.9/5 on Google Reviews — hover to pause and read." />
         </div>
         <ReviewMarquee />
       </section>
 
-      <section style={{ padding: "90px var(--container-pad)", maxWidth: "var(--container-max)", margin: "0 auto" }}>
+      <section style={{ padding: "90px 32px", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <SectionHead eyebrow="Pan-India Compliance Services" title="Our Office Locations" sub="Two home offices in Kolkata & Bhagalpur, delivering to 20+ metros — click a pin to explore." />
         <OfficeMap />
       </section>
 
-      <section style={{ background: "var(--white)", padding: "90px var(--container-pad)" }}>
+      <section style={{ background: "var(--white)", padding: "90px 32px" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <SectionHead eyebrow="Quick Answers" title="Frequently Asked Questions" />
           <Accordion defaultOpenIndex={0} items={FAQ} />

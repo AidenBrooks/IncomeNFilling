@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import atlas from "world-atlas/countries-110m.json";
+import { useBP } from "@/lib/useBP";
 import { PinIcon } from "@/components/shared/icons";
 import { OFFICES, METROS } from "@/data/content";
 
@@ -20,6 +21,7 @@ export function OfficeMap({ contactChannels } = {}) {
   const [geo, setGeo] = useState(null);
   const [sel, setSel] = useState(0);
   const [hoverMetro, setHoverMetro] = useState(null);
+  const bp = useBP();
 
   useEffect(() => {
     let cancelled = false;
@@ -68,18 +70,18 @@ export function OfficeMap({ contactChannels } = {}) {
       window.removeEventListener("resize", onResize);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [bp.ltDesktop]);
 
   const offices = geo ? geo.offices : [];
   const cur = offices[sel];
   const mapsHref = cur ? "https://www.google.com/maps/search/" + encodeURIComponent(cur.addr + ", " + cur.region) : "#";
 
   return (
-    <div className="rsp-2col office-map-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 16, alignItems: "stretch", height: 470 }}>
+    <div style={{ display: "grid", gridTemplateColumns: bp.ltDesktop ? "1fr" : "1.2fr 1fr", gap: 16, alignItems: "stretch", height: bp.ltDesktop ? "auto" : 470 }}>
       <div
         ref={wrap}
         style={{
-          position: "relative", height: "100%", boxSizing: "border-box", borderRadius: "var(--radius-xl)", overflow: "hidden",
+          position: "relative", height: bp.ltDesktop ? 340 : "100%", boxSizing: "border-box", borderRadius: "var(--radius-xl)", overflow: "hidden",
           background: "var(--white)", border: "1px solid var(--ink-100)",
           backgroundImage: "radial-gradient(var(--navy-050) 1.2px,transparent 1.2px)", backgroundSize: "24px 24px", boxShadow: "var(--shadow-md)",
         }}
@@ -146,7 +148,7 @@ export function OfficeMap({ contactChannels } = {}) {
           <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--navy-800)", letterSpacing: ".04em" }}>Serving pan-India · 20+ metros</span>
         </div>
       </div>
-      <div style={{ height: "100%", boxSizing: "border-box", borderRadius: "var(--radius-xl)", background: "var(--white)", border: "1px solid var(--ink-100)", display: "flex", flexDirection: "column", boxShadow: "var(--shadow-md)", position: "relative", overflow: "hidden" }}>
+      <div style={{ height: bp.ltDesktop ? "auto" : "100%", boxSizing: "border-box", borderRadius: "var(--radius-xl)", background: "var(--white)", border: "1px solid var(--ink-100)", display: "flex", flexDirection: "column", boxShadow: "var(--shadow-md)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "relative", padding: "20px 22px 18px", background: "linear-gradient(135deg,var(--gold-400),var(--gold-600))", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: -30, right: -20, width: 120, height: 120, borderRadius: "50%", border: "18px solid rgba(255,255,255,.16)" }} />
           <span style={{ position: "absolute", right: 20, bottom: 16, opacity: 0.25 }}>

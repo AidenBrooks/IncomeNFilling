@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useBP } from "@/lib/useBP";
 import { SocialIcon } from "@/components/shared/SocialIcon";
 import { SOCIALS } from "@/components/shared/icons";
 import { HOME_CATEGORIES } from "@/data/categories";
@@ -18,16 +19,17 @@ const QUICK_LINKS = [
 export function Footer() {
   const [email, setEmail] = useState("");
   const [ok, setOk] = useState(false);
+  const bp = useBP();
   const columns = [
     { title: "Quick Links", items: QUICK_LINKS },
     { title: "Services", items: HOME_CATEGORIES.map((c) => [c.title, "/services"]) },
   ];
 
   return (
-    <footer className="footer-section" style={{ background: "var(--navy-950)", color: "var(--white)", padding: "64px 32px 26px", position: "relative", overflow: "hidden" }}>
+    <footer style={{ background: "var(--navy-950)", color: "var(--white)", padding: bp.mobile ? "48px 20px 24px" : "64px 32px 26px", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: -80, left: -40, width: 260, height: 260, borderRadius: "50%", background: "var(--gold-500)", opacity: 0.06 }} />
       <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", position: "relative" }}>
-        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1.2fr", gap: 40, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,.1)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : bp.tablet ? "1fr 1fr" : "1.4fr 1fr 1fr 1.2fr", gap: bp.mobile ? 32 : 40, paddingBottom: 40, borderBottom: "1px solid rgba(255,255,255,.1)" }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Image src="/logo.jpg" alt="Income N Filing" width={40} height={40} style={{ borderRadius: "50%" }} />

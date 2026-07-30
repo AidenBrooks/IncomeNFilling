@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useBP } from "@/lib/useBP";
 import { WhatsAppIcon } from "@/components/shared/icons";
 import { BotCharacter } from "@/components/shared/BotCharacter";
 import { WHATSAPP_URL } from "@/data/content";
@@ -9,6 +10,7 @@ export function ChatWidget() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [botHover, setBotHover] = useState(false);
+  const bp = useBP();
 
   const QUICK = [
     { label: "File my ITR", action: () => router.push("/contact") },
@@ -17,9 +19,9 @@ export function ChatWidget() {
   ];
 
   return (
-    <div style={{ position: "fixed", bottom: 26, right: 26, zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 26 }}>
+    <div style={{ position: "fixed", bottom: bp.ltDesktop ? 16 : 26, right: bp.ltDesktop ? 16 : 26, zIndex: 90, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: bp.ltDesktop ? 12 : 26 }}>
       {open && (
-        <div style={{ width: 270, background: "var(--white)", borderRadius: "var(--radius-lg)", boxShadow: "var(--shadow-lg)", border: "1px solid var(--ink-100)", overflow: "hidden", animation: "fade-in-up .25s var(--ease-standard)" }}>
+        <div style={{ width: bp.ltDesktop ? "min(280px,calc(100vw - 32px))" : 270, background: "var(--white)", borderRadius: "var(--radius-lg)", boxShadow: "var(--shadow-lg)", border: "1px solid var(--ink-100)", overflow: "hidden", animation: "fade-in-up .25s var(--ease-standard)" }}>
           <div style={{ background: "var(--navy-900)", padding: "16px 18px", display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ position: "relative", width: 38, height: 38, borderRadius: "50%", background: "var(--gold-500)", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--navy-950)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -97,28 +99,52 @@ export function ChatWidget() {
         <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid var(--whatsapp-green)", animation: "pulse-ring 2s infinite" }} />
         <WhatsAppIcon size={30} color="var(--white)" />
       </a>
-      <button
-        onClick={() => setOpen((o) => !o)}
-        onMouseEnter={() => setBotHover(true)}
-        onMouseLeave={() => setBotHover(false)}
-        title="Chat with our bot"
-        style={{
-          position: "relative", width: 92, height: 120, padding: 0, background: "none", border: "none", cursor: "pointer",
-          filter: "drop-shadow(0 12px 16px rgba(15,42,66,.28))", transition: "transform .2s", transform: botHover ? "scale(1.06)" : "none",
-        }}
-      >
-        {!open && (
-          <span style={{ position: "absolute", top: 12, right: 8, zIndex: 2, width: 20, height: 20, borderRadius: "50%", background: "var(--gold-500)", color: "var(--navy-950)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-sm)" }}>
-            1
-          </span>
-        )}
-        {!open && (
-          <span style={{ position: "absolute", top: -26, right: 0, zIndex: 2, whiteSpace: "nowrap", background: "var(--navy-900)", color: "var(--white)", fontFamily: "var(--font-body)", fontSize: 11, fontWeight: "var(--weight-medium)", padding: "5px 11px", borderRadius: "var(--radius-pill)", boxShadow: "var(--shadow-md)" }}>
-            Need help? 👋
-          </span>
-        )}
-        <BotCharacter hovered={botHover} />
-      </button>
+      {bp.ltDesktop ? (
+        <button
+          onClick={() => setOpen((o) => !o)}
+          title="Chat with our bot"
+          style={{
+            position: "relative", width: 56, height: 56, borderRadius: "50%", padding: 0, background: "var(--navy-900)",
+            border: "none", cursor: "pointer", boxShadow: "var(--shadow-lg)", display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >
+          {!open && (
+            <span style={{ position: "absolute", top: -4, right: -4, zIndex: 2, width: 20, height: 20, borderRadius: "50%", background: "var(--gold-500)", color: "var(--navy-950)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-sm)" }}>
+              1
+            </span>
+          )}
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="var(--gold-400)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="8" width="16" height="11" rx="3" />
+            <path d="M12 8V4" />
+            <circle cx="12" cy="3" r="1.4" fill="var(--gold-400)" stroke="none" />
+            <circle cx="9" cy="13.5" r="1.1" fill="var(--gold-400)" stroke="none" />
+            <circle cx="15" cy="13.5" r="1.1" fill="var(--gold-400)" stroke="none" />
+          </svg>
+        </button>
+      ) : (
+        <button
+          onClick={() => setOpen((o) => !o)}
+          onMouseEnter={() => setBotHover(true)}
+          onMouseLeave={() => setBotHover(false)}
+          title="Chat with our bot"
+          style={{
+            position: "relative", width: 92, height: 120, padding: 0, background: "none", border: "none", cursor: "pointer",
+            filter: "drop-shadow(0 12px 16px rgba(15,42,66,.28))", transition: "transform .2s", transform: botHover ? "scale(1.06)" : "none",
+          }}
+        >
+          {!open && (
+            <span style={{ position: "absolute", top: 12, right: 8, zIndex: 2, width: 20, height: 20, borderRadius: "50%", background: "var(--gold-500)", color: "var(--navy-950)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-sm)" }}>
+              1
+            </span>
+          )}
+          {!open && (
+            <span style={{ position: "absolute", top: -26, right: 0, zIndex: 2, whiteSpace: "nowrap", background: "var(--navy-900)", color: "var(--white)", fontFamily: "var(--font-body)", fontSize: 11, fontWeight: "var(--weight-medium)", padding: "5px 11px", borderRadius: "var(--radius-pill)", boxShadow: "var(--shadow-md)" }}>
+              Need help? 👋
+            </span>
+          )}
+          <BotCharacter hovered={botHover} />
+        </button>
+      )}
     </div>
   );
 }

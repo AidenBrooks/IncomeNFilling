@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useBP } from "@/lib/useBP";
 import { ServiceIcon } from "@/components/shared/icons";
 import { HUB_CATEGORIES, GROUP_ACCENT, GROUP_TINT } from "@/data/categories";
 import { saveSelection, clearSelection } from "@/lib/selectionStorage";
@@ -9,6 +10,7 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
   const router = useRouter();
   const [active, setActive] = useState(startCat);
   const [mounted, setMounted] = useState(false);
+  const bp = useBP();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -48,22 +50,21 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
     });
 
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(10,22,40,.55)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(0px, 4vw, 28px)", opacity: mounted ? 1 : 0, transition: "opacity .25s" }}>
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(10,22,40,.55)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: bp.mobile ? 0 : "28px", opacity: mounted ? 1 : 0, transition: "opacity .25s" }}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className="rsp-sidebar"
         style={{
-          width: "min(1040px,100%)", height: "min(680px,92vh)", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden",
-          display: "grid", gridTemplateColumns: "270px 1fr", boxShadow: "0 40px 90px rgba(6,18,36,.5)", transform: mounted ? "scale(1)" : "scale(.95)",
+          width: bp.mobile ? "100%" : "min(1040px,100%)", height: bp.mobile ? "100%" : "min(680px,92vh)", background: "var(--white)", borderRadius: bp.mobile ? 0 : "var(--radius-xl)", overflow: "hidden",
+          display: "grid", gridTemplateColumns: bp.mobile ? "62px 1fr" : "270px 1fr", boxShadow: "0 40px 90px rgba(6,18,36,.5)", transform: mounted ? "scale(1)" : "scale(.95)",
           transition: "transform .28s var(--ease-standard)", fontFamily: "var(--font-body)",
         }}
       >
         <div style={{ background: "var(--navy-950)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
-          <div className="rsp-hide-mobile" style={{ padding: "22px 22px 16px", borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+          <div style={{ padding: bp.mobile ? "14px 8px" : "22px 22px 16px", borderBottom: "1px solid rgba(255,255,255,.08)", display: bp.mobile ? "none" : "block" }}>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--gold-400)", marginBottom: 6 }}>All Modules</div>
             <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-lg)", color: "var(--white)" }}>Pick your services</div>
           </div>
-          <div className="rsp-sidebar-list" style={{ flex: 1, display: "flex", flexDirection: "column", overflowY: "auto", padding: "10px 12px" }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: bp.mobile ? "8px 6px" : "10px 12px" }}>
             {HUB_CATEGORIES.map((m, i) => {
               const on = i === active;
               const mac = GROUP_ACCENT[m.group] || "var(--gold-500)";
@@ -72,20 +73,27 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
                 <button
                   key={m.title}
                   onClick={() => setActive(i)}
-                  style={{ width: "100%", flexShrink: 0, whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 11, padding: "11px 12px", marginBottom: 4, borderRadius: "var(--radius-md)", border: "none", cursor: "pointer", textAlign: "left", background: on ? "rgba(255,255,255,.1)" : "transparent", transition: "background .18s" }}
+                  title={m.title}
+                  style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: bp.mobile ? "center" : "flex-start", gap: 11, padding: bp.mobile ? "9px 4px" : "11px 12px", marginBottom: 4, borderRadius: "var(--radius-md)", border: "none", cursor: "pointer", textAlign: "left", background: on ? "rgba(255,255,255,.1)" : "transparent", transition: "background .18s", position: "relative" }}
                 >
                   <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: "var(--radius-sm)", background: on ? mac : "rgba(255,255,255,.08)", color: "var(--white)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <ServiceIcon code={m.icon} size={18} />
                   </span>
-                  <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontWeight: on ? "var(--weight-semibold)" : "var(--weight-medium)", color: on ? "var(--white)" : "var(--navy-300)", lineHeight: 1.25 }}>{m.title}</span>
-                  {sc > 0 && <span style={{ flexShrink: 0, fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: "var(--radius-pill)", background: "var(--status-positive)", color: "var(--white)" }}>{sc}</span>}
+                  {!bp.mobile && (
+                    <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontWeight: on ? "var(--weight-semibold)" : "var(--weight-medium)", color: on ? "var(--white)" : "var(--navy-300)", lineHeight: 1.25 }}>{m.title}</span>
+                  )}
+                  {sc > 0 && (
+                    <span style={{ flexShrink: 0, fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: "var(--radius-pill)", background: "var(--status-positive)", color: "var(--white)", position: bp.mobile ? "absolute" : "static", top: bp.mobile ? 4 : "auto", right: bp.mobile ? 4 : "auto" }}>
+                      {sc}
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-          <div style={{ position: "relative", padding: "clamp(14px, 3vw, 22px) clamp(16px, 3vw, 26px)", borderBottom: "1px solid var(--ink-100)", display: "flex", alignItems: "flex-start", gap: 14, flexWrap: "wrap" }}>
+          <div style={{ position: "relative", padding: "22px 26px", borderBottom: "1px solid var(--ink-100)", display: "flex", alignItems: "flex-start", gap: 14 }}>
             <span style={{ flexShrink: 0, width: 48, height: 48, borderRadius: "var(--radius-md)", background: `linear-gradient(135deg,${ac},var(--navy-950))`, color: "var(--white)", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <ServiceIcon code={cat.icon} size={24} />
             </span>
@@ -100,8 +108,8 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
             </button>
             <button onClick={onClose} style={{ flexShrink: 0, width: 34, height: 34, borderRadius: "50%", border: "1px solid var(--ink-100)", background: "var(--white)", color: "var(--ink-500)", cursor: "pointer", fontSize: 18, lineHeight: 1 }}>×</button>
           </div>
-          <div style={{ flex: 1, overflowY: "auto", padding: "20px clamp(16px, 3vw, 26px)", background: "var(--paper)" }}>
-            <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: bp.mobile ? "16px" : "20px 26px", background: "var(--paper)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : "1fr 1fr", gap: 10 }}>
               {cat.services.map((s) => {
                 const on = !!selected[s];
                 return (

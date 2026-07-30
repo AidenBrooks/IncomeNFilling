@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useBP } from "@/lib/useBP";
 import { STEPS } from "@/data/content";
 
 function StepVisual({ step }) {
@@ -56,6 +57,7 @@ function StepVisual({ step }) {
 export function Stepper() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const bp = useBP();
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => setActive((a) => (a + 1) % STEPS.length), 3800);
@@ -65,7 +67,7 @@ export function Stepper() {
   const s = STEPS[active];
 
   return (
-    <div className="rsp-2col" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} style={{ display: "grid", gridTemplateColumns: "minmax(0,340px) minmax(0,1fr)", gap: 24, alignItems: "stretch" }}>
+    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} style={{ display: "grid", gridTemplateColumns: bp.ltDesktop ? "1fr" : "minmax(0,340px) minmax(0,1fr)", gap: 24, alignItems: "stretch" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {STEPS.map((st, i) => (
           <button

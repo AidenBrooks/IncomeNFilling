@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useBP } from "@/lib/useBP";
 import { SectionHead } from "@/components/ui/Eyebrow";
 import { WhyIcon } from "@/components/shared/icons";
 import { WHY_CHOOSE_US } from "@/data/content";
@@ -39,6 +40,7 @@ function WhyCard({ f, i }) {
 }
 
 export function WhyChooseUs() {
+  const bp = useBP();
   return (
     <section style={{ position: "relative", padding: "86px 32px 96px", overflow: "hidden" }}>
       <div
@@ -49,7 +51,7 @@ export function WhyChooseUs() {
       />
       <div style={{ position: "relative", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <SectionHead eyebrow="Why Us" title="Why Businesses Choose Us" sub="Professional, secure, and dependable compliance services — hover any card to explore." />
-        <div className="rsp-cols-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : bp.tablet ? "repeat(2,1fr)" : "repeat(3,1fr)", gap: 20 }}>
           {WHY_CHOOSE_US.map((f, i) => (
             <WhyCard key={f.title} f={f} i={i} />
           ))}
