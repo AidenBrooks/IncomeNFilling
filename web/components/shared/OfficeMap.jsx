@@ -25,7 +25,7 @@ export function OfficeMap({ contactChannels } = {}) {
     let cancelled = false;
     const draw = () => {
       const w = wrap.current ? wrap.current.clientWidth : 620;
-      const h = 468;
+      const h = wrap.current && wrap.current.clientHeight ? wrap.current.clientHeight : 468;
       try {
         const countries = feature(atlas, atlas.objects.countries);
         const india = countries.features.find((f) => String(f.id) === "356");

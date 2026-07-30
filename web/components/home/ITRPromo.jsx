@@ -39,7 +39,7 @@ export function ITRPromo() {
             </div>
           </div>
         </div>
-        <div style={{ position: "relative", minHeight: 340 }}>
+        <div className="rsp-order-first" style={{ position: "relative", minHeight: "clamp(240px, 44vw, 340px)", background: "#f2e3ce" }}>
           <Image src="/images/itr-refund.jpg" alt="ITR refund" fill sizes="(max-width: 900px) 50vw, 600px" style={{ objectFit: "cover", objectPosition: "center" }} />
         </div>
       </div>

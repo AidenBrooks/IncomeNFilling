@@ -624,7 +624,7 @@ export default function ServicesApplyPage() {
               )}
             </div>
 
-            <aside className="rsp-unstick" style={{ position: "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18 }}>
+            <aside className="rsp-unstick rsp-order-first" style={{ position: "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18 }}>
               <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 20px 45px rgba(11,31,58,.12)", border: "1px solid var(--ink-100)", overflow: "hidden" }}>
                 <div onMouseEnter={() => setHeadHover(true)} onMouseLeave={() => setHeadHover(false)} style={{ position: "relative", overflow: "hidden", padding: "20px 26px 30px", background: "linear-gradient(150deg,var(--gold-300) 0%,var(--gold-500) 52%,var(--gold-600) 100%)", cursor: "default" }}>
                   <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "repeating-linear-gradient(90deg,var(--navy-950) 0 14px,transparent 14px 20px)" }} />

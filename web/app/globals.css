@@ -106,6 +106,7 @@ button { font: inherit; }
   .office-map-grid { height: auto !important; }
   .office-map-grid > div { height: 380px !important; }
   .rsp-unstick { position: relative !important; top: auto !important; }
+  .rsp-order-first { order: -1 !important; }
 }
 @media (max-width: 860px) {
   .rsp-stack { flex-direction: column !important; }
@@ -118,6 +119,8 @@ button { font: inherit; }
 @media (max-width: 640px) {
   .rsp-cols-2, .rsp-cols-3, .footer-grid { grid-template-columns: 1fr !important; }
   .rsp-hide-mobile { display: none !important; }
+  .client-flip-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .client-flip-grid > div { width: 100% !important; }
 }
 @media (min-width: 641px) {
   .rsp-hide-desktop { display: none !important; }

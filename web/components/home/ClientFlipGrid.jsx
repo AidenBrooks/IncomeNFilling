@@ -10,13 +10,13 @@ function ClientFace({ c, i, back }) {
     <div
       style={{
         position: "absolute", inset: 0, backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: back ? "rotateY(180deg)" : "none",
-        display: "flex", alignItems: "center", gap: 13, padding: "14px 16px", background: "var(--white)", border: "1px solid var(--ink-100)",
+        display: "flex", alignItems: "center", gap: "clamp(10px, 2.5vw, 13px)", padding: "clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 16px)", background: "var(--white)", border: "1px solid var(--ink-100)",
         borderRadius: "var(--radius-lg)", boxSizing: "border-box", boxShadow: "var(--shadow-sm)", overflow: "hidden",
       }}
     >
       <span style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: accent }} />
       <div style={{ position: "relative", flexShrink: 0 }}>
-        <div style={{ width: 48, height: 48, borderRadius: "50%", overflow: "hidden", border: "2px solid " + accent }}>
+        <div style={{ width: "clamp(40px, 10vw, 48px)", height: "clamp(40px, 10vw, 48px)", borderRadius: "50%", overflow: "hidden", border: "2px solid " + accent }}>
           <Portrait seed={c.av} size={48} />
         </div>
         <span style={{ position: "absolute", right: -2, bottom: -2, width: 16, height: 16, borderRadius: "50%", background: accent, color: "var(--white)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 700, border: "2px solid var(--white)" }}>✓</span>
@@ -49,7 +49,7 @@ function ClientFlipCard({ card, i }) {
 
 export function ClientFlipGrid() {
   return (
-    <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
+    <div className="client-flip-grid" style={{ maxWidth: 1000, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
       {CLIENT_CARDS.map((card, i) => (
         <ClientFlipCard key={i} card={card} i={i} />
       ))}
