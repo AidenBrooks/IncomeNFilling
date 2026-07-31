@@ -55,16 +55,16 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
         onClick={(e) => e.stopPropagation()}
         style={{
           width: bp.mobile ? "100%" : "min(1040px,100%)", height: bp.mobile ? "100%" : "min(680px,92vh)", background: "var(--white)", borderRadius: bp.mobile ? 0 : "var(--radius-xl)", overflow: "hidden",
-          display: "grid", gridTemplateColumns: bp.mobile ? "62px 1fr" : "270px 1fr", boxShadow: "0 40px 90px rgba(6,18,36,.5)", transform: mounted ? "scale(1)" : "scale(.95)",
+          display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : "270px 1fr", boxShadow: "0 40px 90px rgba(6,18,36,.5)", transform: mounted ? "scale(1)" : "scale(.95)",
           transition: "transform .28s var(--ease-standard)", fontFamily: "var(--font-body)",
         }}
       >
         <div style={{ background: "var(--navy-950)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
-          <div style={{ padding: bp.mobile ? "14px 8px" : "22px 22px 16px", borderBottom: "1px solid rgba(255,255,255,.08)", display: bp.mobile ? "none" : "block" }}>
+          <div style={{ padding: "22px 22px 16px", borderBottom: "1px solid rgba(255,255,255,.08)", display: bp.mobile ? "none" : "block" }}>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--gold-400)", marginBottom: 6 }}>All Modules</div>
             <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-lg)", color: "var(--white)" }}>Pick your services</div>
           </div>
-          <div style={{ flex: 1, overflowY: "auto", padding: bp.mobile ? "8px 6px" : "10px 12px" }}>
+          <div style={{ display: "flex", flexDirection: bp.mobile ? "row" : "column", overflowX: bp.mobile ? "auto" : "hidden", overflowY: bp.mobile ? "hidden" : "auto", gap: bp.mobile ? 8 : 0, padding: "10px 12px" }}>
             {HUB_CATEGORIES.map((m, i) => {
               const on = i === active;
               const mac = GROUP_ACCENT[m.group] || "var(--gold-500)";
@@ -73,17 +73,18 @@ export function ServicePicker({ startCat, selected, setSelected, onClose }) {
                 <button
                   key={m.title}
                   onClick={() => setActive(i)}
-                  title={m.title}
-                  style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: bp.mobile ? "center" : "flex-start", gap: 11, padding: bp.mobile ? "9px 4px" : "11px 12px", marginBottom: 4, borderRadius: "var(--radius-md)", border: "none", cursor: "pointer", textAlign: "left", background: on ? "rgba(255,255,255,.1)" : "transparent", transition: "background .18s", position: "relative" }}
+                  style={{
+                    width: bp.mobile ? "auto" : "100%", flexShrink: 0, whiteSpace: bp.mobile ? "nowrap" : "normal", display: "flex", alignItems: "center",
+                    gap: 11, padding: "11px 12px", marginBottom: bp.mobile ? 0 : 4, borderRadius: "var(--radius-md)", border: "none", cursor: "pointer",
+                    textAlign: "left", background: on ? "rgba(255,255,255,.1)" : "transparent", transition: "background .18s",
+                  }}
                 >
                   <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: "var(--radius-sm)", background: on ? mac : "rgba(255,255,255,.08)", color: "var(--white)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <ServiceIcon code={m.icon} size={18} />
                   </span>
-                  {!bp.mobile && (
-                    <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontWeight: on ? "var(--weight-semibold)" : "var(--weight-medium)", color: on ? "var(--white)" : "var(--navy-300)", lineHeight: 1.25 }}>{m.title}</span>
-                  )}
+                  <span style={{ flex: bp.mobile ? "none" : 1, minWidth: 0, fontSize: 13, fontWeight: on ? "var(--weight-semibold)" : "var(--weight-medium)", color: on ? "var(--white)" : "var(--navy-300)", lineHeight: 1.25 }}>{m.title}</span>
                   {sc > 0 && (
-                    <span style={{ flexShrink: 0, fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: "var(--radius-pill)", background: "var(--status-positive)", color: "var(--white)", position: bp.mobile ? "absolute" : "static", top: bp.mobile ? 4 : "auto", right: bp.mobile ? 4 : "auto" }}>
+                    <span style={{ flexShrink: 0, fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: "var(--radius-pill)", background: "var(--status-positive)", color: "var(--white)" }}>
                       {sc}
                     </span>
                   )}
