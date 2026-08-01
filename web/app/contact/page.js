@@ -25,6 +25,7 @@ export default function ContactPage() {
   const [cat, setCat] = useState("");
   const [f, setF] = useState({ name: "", email: "", phone: "", msg: "" });
   const [sent, setSent] = useState(false);
+  const [rcs, setRcs] = useState(false);
   const set = (k, v) => setF((o) => ({ ...o, [k]: v }));
   const iStyle = { width: "100%", boxSizing: "border-box", fontFamily: "var(--font-body)", fontSize: 14.5, padding: "13px 16px", borderRadius: "var(--radius-md)", border: "1.5px solid var(--ink-100)", background: "var(--navy-050)", color: "var(--navy-900)", outline: "none", transition: "border-color .15s,box-shadow .15s" };
   const foc = (e) => {
@@ -39,6 +40,7 @@ export default function ContactPage() {
   };
   const submit = (e) => {
     e.preventDefault();
+    if (!rcs) return;
     setSent(true);
   };
 
@@ -121,6 +123,7 @@ export default function ContactPage() {
                       setSent(false);
                       setF({ name: "", email: "", phone: "", msg: "" });
                       setCat("");
+                      setRcs(false);
                     }}
                     style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 14, padding: "12px 22px", borderRadius: "var(--radius-pill)", border: "1.5px solid var(--ink-100)", background: "var(--white)", color: "var(--navy-800)", cursor: "pointer" }}
                   >
@@ -168,6 +171,13 @@ export default function ContactPage() {
                   <Label>Briefly describe your requirement</Label>
                   <textarea value={f.msg} onChange={(e) => set("msg", e.target.value)} onFocus={foc} onBlur={blur} rows={3} placeholder="e.g. need GST registration for a new LLP" style={{ ...iStyle, resize: "vertical", minHeight: 88 }} />
                 </div>
+                <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer", fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.5, color: "var(--navy-800)" }}>
+                  <input type="checkbox" required checked={rcs} onChange={(e) => setRcs(e.target.checked)} style={{ marginTop: 2, width: 17, height: 17, flexShrink: 0, accentColor: "var(--gold-600)", cursor: "pointer" }} />
+                  <span>
+                    I agree to receive messages for communication via RCS.
+                    <span style={{ color: "var(--status-negative,#c0392b)" }}> *</span>
+                  </span>
+                </label>
                 <button
                   type="submit"
                   onMouseEnter={(e) => {

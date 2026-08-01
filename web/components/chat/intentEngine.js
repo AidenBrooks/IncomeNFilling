@@ -19,7 +19,7 @@ function findKB(t) {
 export function botReply(text) {
   const s = text.toLowerCase().trim();
   if (/^(hi|hey|hello|good (morning|evening|afternoon)|namaste|hii?|start)\b/.test(s) || s === "") {
-    return { text: "Hello! 👋 Welcome to Income N Filing. How can we help you today? Just tap a topic or type your question below 😊", chips: ["GST registration", "File my ITR", "Start a company", "I got a tax notice"] };
+    return { text: "Hello! 👋 Welcome to Income N Filing. How can we help you today? Just tap a topic or type your question 😊", chips: ["GST registration", "File my ITR", "Start a company", "I got a tax notice"] };
   }
   if (/(price|cost|fee|charge|quote|how much|rate|kitna|kitne)/.test(s)) {
     return { text: "Great question! 😊 We don’t have fixed prices — every case is different, so we scope it on a free call and you only pay for what you need. Shall I set that up?", wa: true, chips: ["Yes, book a free call", "See all services"] };
