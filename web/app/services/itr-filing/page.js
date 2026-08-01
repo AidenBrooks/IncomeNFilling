@@ -33,7 +33,7 @@ export default function ITRFilingPage() {
   return (
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
-      <NavBar active="services" />
+      <NavBar active="itr" />
       <section style={{ padding: bp.mobile ? "32px 20px 64px" : "56px 32px 90px", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-xs)", color: "var(--ink-500)", marginBottom: 16 }}>
           services / income-tax / <span style={{ color: "var(--navy-900)" }}>itr-filing</span>

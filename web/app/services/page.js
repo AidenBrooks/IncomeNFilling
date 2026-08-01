@@ -96,7 +96,7 @@ export default function ServicesPage() {
         </div>
       </section>
       <section style={{ padding: "0 32px 96px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -64 }}>
-        <div style={{ position: "sticky", top: 78, zIndex: 40, background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "var(--shadow-md)", border: "1px solid var(--ink-100)", padding: "14px 18px", marginBottom: 30, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+        <div style={{ position: "sticky", top: 78, zIndex: 40, background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "var(--shadow-md)", border: "1px solid var(--ink-100)", padding: "14px 18px", marginBottom: 30, display: "flex", flexDirection: bp.mobile ? "column" : "row", alignItems: bp.mobile ? "stretch" : "center", gap: bp.mobile ? 12 : 14, flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", flex: 1, minWidth: 0 }}>
             {chips.map((ch) => {
               const n = ch === "All" ? HUB_CATEGORIES.length : HUB_CATEGORIES.filter((c) => c.group === ch).length;
@@ -114,9 +114,9 @@ export default function ServicesPage() {
               );
             })}
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0, ...(bp.mobile ? { width: "100%", justifyContent: "space-between", borderTop: "1px solid var(--ink-100)", paddingTop: 12 } : {}) }}>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--ink-300)" }}>Sort</span>
-            <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ fontFamily: "var(--font-body)", fontSize: 13, padding: "8px 12px", borderRadius: "var(--radius-md)", border: "1px solid var(--ink-100)", background: "var(--white)", color: "var(--navy-900)", cursor: "pointer", outline: "none" }}>
+            <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ fontFamily: "var(--font-body)", fontSize: 13, padding: "8px 12px", borderRadius: "var(--radius-md)", border: "1px solid var(--ink-100)", background: "var(--white)", color: "var(--navy-900)", cursor: "pointer", outline: "none", flex: bp.mobile ? 1 : "none" }}>
               <option value="recommended">Recommended</option>
               <option value="most">Most services</option>
               <option value="az">A – Z</option>

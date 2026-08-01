@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useBP } from "@/lib/useBP";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
-import { ServiceIcon, WhatsAppIcon, CheckCircleIcon } from "@/components/shared/icons";
+import { ServiceIcon, WhatsAppIcon } from "@/components/shared/icons";
 import { HUB_CATEGORIES } from "@/data/categories";
 import { loadSelection, clearSelection, saveSelection } from "@/lib/selectionStorage";
 import { WHATSAPP_NUMBER } from "@/data/content";
@@ -44,6 +44,15 @@ function findCategoryFor(name) {
 
 function ApplyLabel({ children }) {
   return <label style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-500)" }}>{children}</label>;
+}
+
+function CheckCircle({ size = 72, color = "var(--gold-600)" }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8 12.5l2.5 2.5 5-5.5" />
+    </svg>
+  );
 }
 
 export default function ServicesApplyPage() {
@@ -276,7 +285,7 @@ export default function ServicesApplyPage() {
                 <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--gold-100)" }} />
                 <span style={{ position: "absolute", inset: -8, borderRadius: "50%", border: "2px solid var(--gold-300)", animation: "pulse-ring 2s infinite" }} />
                 <span style={{ position: "relative", display: "block" }}>
-                  <CheckCircleIcon size={72} color="var(--gold-600)" />
+                  <CheckCircle size={72} color="var(--gold-600)" />
                 </span>
               </div>
               <h2 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)", margin: 0 }}>
@@ -626,7 +635,7 @@ export default function ServicesApplyPage() {
               )}
             </div>
 
-            <aside style={{ position: bp.ltDesktop ? "static" : "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18, order: bp.ltDesktop ? -1 : 0 }}>
+            <aside style={{ position: bp.ltDesktop ? "static" : "sticky", top: 90, order: bp.ltDesktop ? -1 : 0, marginBottom: bp.ltDesktop ? 6 : 0, display: "flex", flexDirection: "column", gap: 18 }}>
               <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 20px 45px rgba(11,31,58,.12)", border: "1px solid var(--ink-100)", overflow: "hidden" }}>
                 <div onMouseEnter={() => setHeadHover(true)} onMouseLeave={() => setHeadHover(false)} style={{ position: "relative", overflow: "hidden", padding: "20px 26px 30px", background: "linear-gradient(150deg,var(--gold-300) 0%,var(--gold-500) 52%,var(--gold-600) 100%)", cursor: "default" }}>
                   <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "repeating-linear-gradient(90deg,var(--navy-950) 0 14px,transparent 14px 20px)" }} />
