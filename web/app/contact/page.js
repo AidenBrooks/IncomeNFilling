@@ -1,5 +1,6 @@
 "use client";
 import { Fragment, useState } from "react";
+import { useBP } from "@/lib/useBP";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -20,6 +21,7 @@ function Label({ children }) {
 }
 
 export default function ContactPage() {
+  const bp = useBP();
   const [cat, setCat] = useState("");
   const [f, setF] = useState({ name: "", email: "", phone: "", msg: "" });
   const [sent, setSent] = useState(false);
@@ -44,7 +46,7 @@ export default function ContactPage() {
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
       <NavBar active="contact" />
-      <section className="contact-hero-section" style={{ background: "linear-gradient(150deg,var(--navy-950) 0%,var(--navy-900) 55%,var(--navy-800) 100%)", padding: "70px 32px 128px", position: "relative", overflow: "hidden", textAlign: "center" }}>
+      <section style={{ background: "linear-gradient(150deg,var(--navy-950) 0%,var(--navy-900) 55%,var(--navy-800) 100%)", padding: bp.mobile ? "48px 20px 116px" : "70px 32px 128px", position: "relative", overflow: "hidden", textAlign: "center" }}>
         <div style={{ position: "absolute", top: -80, left: "6%", width: 230, height: 230, borderRadius: 46, background: "radial-gradient(circle,rgba(212,167,71,.3),transparent 68%)", transform: "rotate(-14deg)", animation: "float-y 7s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: 20, right: "10%", width: 130, height: 130, border: "2px dashed rgba(212,167,71,.28)", borderRadius: "50%", transform: "rotate(18deg)", animation: "float-y 5.5s ease-in-out infinite", pointerEvents: "none" }} />
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px)", backgroundSize: "26px 26px", pointerEvents: "none" }} />
@@ -56,7 +58,7 @@ export default function ContactPage() {
             </span>
             Advisors online · replies in minutes
           </div>
-          <h1 className="contact-hero-h1" style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-5xl)", color: "var(--white)", margin: "0 0 14px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.08 }}>
+          <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: bp.mobile ? "var(--text-4xl)" : "var(--text-5xl)", color: "var(--white)", margin: "0 0 14px", letterSpacing: "var(--tracking-tight)", lineHeight: 1.08 }}>
             Let&apos;s start a <span style={{ color: "var(--gold-400)", whiteSpace: "nowrap" }}>conversation</span>
           </h1>
           <p style={{ color: "var(--navy-300)", margin: "0 auto 30px", maxWidth: 520, fontFamily: "var(--font-body)", fontSize: "var(--text-lg)", lineHeight: 1.5 }}>
@@ -88,12 +90,12 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <section style={{ padding: "0 var(--container-pad) 90px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -80, position: "relative" }}>
+      <section style={{ padding: "0 32px 90px", maxWidth: "var(--container-max)", margin: "0 auto", marginTop: -80, position: "relative" }}>
         <div style={{ marginBottom: 26 }}>
           <OfficeMap contactChannels={CHANNELS} />
         </div>
         <div id="contact-form" style={{ maxWidth: 820, margin: "0 auto", scrollMarginTop: 90 }}>
-          <div className="contact-form-card" style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "var(--space-8)", position: "relative", overflow: "hidden", minHeight: 520 }}>
+          <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: bp.mobile ? "28px 22px" : "var(--space-8)", position: "relative", overflow: "hidden", minHeight: 520 }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: "linear-gradient(90deg,var(--gold-400),var(--gold-600))" }} />
             {sent ? (
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 460, animation: "fade-in-up .4s var(--ease-standard) both" }}>
@@ -148,7 +150,7 @@ export default function ContactPage() {
                     ))}
                   </div>
                 </div>
-                <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : "1fr 1fr", gap: 12 }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                     <Label>Full name</Label>
                     <input required value={f.name} onChange={(e) => set("name", e.target.value)} onFocus={foc} onBlur={blur} placeholder="Jane Doe" style={iStyle} />

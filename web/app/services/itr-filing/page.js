@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useBP } from "@/lib/useBP";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -27,16 +28,17 @@ const FAQ = [
 
 export default function ITRFilingPage() {
   const router = useRouter();
+  const bp = useBP();
 
   return (
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
       <WhatsAppButton />
       <NavBar active="services" />
-      <section className="itr-detail-section" style={{ padding: "56px 32px 90px", maxWidth: "var(--container-max)", margin: "0 auto" }}>
+      <section style={{ padding: bp.mobile ? "32px 20px 64px" : "56px 32px 90px", maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-xs)", color: "var(--ink-500)", marginBottom: 16 }}>
           services / income-tax / <span style={{ color: "var(--navy-900)" }}>itr-filing</span>
         </div>
-        <div className="rsp-2col" style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 40, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: bp.ltDesktop ? "1fr" : "1.5fr 1fr", gap: 40, alignItems: "start" }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12, flexWrap: "wrap" }}>
               <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-4xl)", color: "var(--navy-900)", margin: 0 }}>ITR Filing</h1>
@@ -62,7 +64,7 @@ export default function ITRFilingPage() {
             <h2 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)", marginBottom: 20 }}>Frequently asked</h2>
             <Accordion defaultOpenIndex={0} items={FAQ} />
           </div>
-          <div className="rsp-unstick itr-cta-card" style={{ position: "sticky", top: 24, background: "var(--navy-900)", borderRadius: "var(--radius-xl)", padding: 32, color: "var(--white)", overflow: "hidden" }}>
+          <div style={{ position: bp.ltDesktop ? "static" : "sticky", top: 24, background: "var(--navy-900)", borderRadius: "var(--radius-xl)", padding: bp.mobile ? 24 : 32, color: "var(--white)", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: -40, right: -40, width: 150, height: 150, background: "var(--gold-500)", opacity: 0.15, borderRadius: "50%" }} />
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "var(--tracking-widest)", textTransform: "uppercase", color: "var(--gold-400)", marginBottom: 10, position: "relative" }}>Get started</div>
             <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-xl)", marginBottom: 14, position: "relative" }}>Book your ITR filing</div>

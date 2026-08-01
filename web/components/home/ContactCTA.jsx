@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useBP } from "@/lib/useBP";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroCTAButton } from "@/components/ui/HeroCTAButton";
 import { HOME_CATEGORIES } from "@/data/categories";
@@ -28,9 +29,10 @@ function CField({ tag = "input", children, ...props }) {
 
 export function ContactCTA() {
   const [sent, setSent] = useState(false);
+  const bp = useBP();
 
   return (
-    <section id="contact" className="contact-cta-section" style={{ padding: "96px 32px", background: "var(--white)", position: "relative", overflow: "hidden" }}>
+    <section id="contact" style={{ padding: bp.mobile ? "64px 20px" : "96px 32px", background: "var(--white)", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(43,108,214,.16) 1px,transparent 1px)", backgroundSize: "26px 26px", opacity: 0.7 }} />
       <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)", width: 560, height: 340, background: "radial-gradient(circle,rgba(239,168,46,.14),transparent 68%)" }} />
       <div style={{ position: "relative", maxWidth: 1060, margin: "0 auto" }}>
@@ -43,7 +45,7 @@ export function ContactCTA() {
             Tell us what you need — a real advisor replies, usually within a couple of hours.
           </p>
         </div>
-        <div className="rsp-2col" style={{ display: "grid", gridTemplateColumns: "0.92fr 1.08fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "0 30px 60px rgba(15,42,66,.16)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: bp.ltDesktop ? "1fr" : "0.92fr 1.08fr", background: "var(--white)", borderRadius: "var(--radius-xl)", overflow: "hidden", border: "1px solid var(--ink-100)", boxShadow: "0 30px 60px rgba(15,42,66,.16)" }}>
           <div style={{ position: "relative", overflow: "hidden", background: "linear-gradient(155deg,var(--gold-300,#f7cf82),var(--gold-500) 52%,var(--gold-600,#d8901f))", padding: "34px 30px", display: "flex", flexDirection: "column", gap: 20 }}>
             <div style={{ position: "absolute", top: -70, right: -60, width: 210, height: 210, borderRadius: "50%", border: "22px solid rgba(15,42,66,.1)" }} />
             <div style={{ position: "absolute", bottom: -80, left: -60, width: 190, height: 190, borderRadius: "50%", background: "rgba(255,255,255,.16)" }} />
@@ -109,7 +111,7 @@ export function ContactCTA() {
                   }}
                   style={{ display: "flex", flexDirection: "column", gap: 14 }}
                 >
-                  <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : "1fr 1fr", gap: 14 }}>
                     <CField required placeholder="Your name" />
                     <CField required placeholder="Phone" />
                   </div>

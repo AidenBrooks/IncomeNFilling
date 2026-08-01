@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useBP } from "@/lib/useBP";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { ServiceIcon, WhatsAppIcon, CheckCircleIcon } from "@/components/shared/icons";
@@ -47,6 +48,7 @@ function ApplyLabel({ children }) {
 
 export default function ServicesApplyPage() {
   const router = useRouter();
+  const bp = useBP();
   const goServices = () => router.push("/services");
 
   const [serviceNames, setServiceNames] = useState(null);
@@ -151,7 +153,7 @@ export default function ServicesApplyPage() {
 
   return (
     <div style={{ background: "var(--paper)", minHeight: "100vh" }}>
-      <a href={waHref} target="_blank" rel="noreferrer" className="apply-wa-btn" style={{ position: "fixed", bottom: 26, right: 26, width: 58, height: 58, borderRadius: "50%", background: "var(--whatsapp-green)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-lg)", zIndex: 80, textDecoration: "none" }}>
+      <a href={waHref} target="_blank" rel="noreferrer" style={{ position: "fixed", bottom: bp.ltDesktop ? 16 : 26, right: bp.ltDesktop ? 16 : 26, width: bp.ltDesktop ? 52 : 58, height: bp.ltDesktop ? 52 : 58, borderRadius: "50%", background: "var(--whatsapp-green)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "var(--shadow-lg)", zIndex: 80, textDecoration: "none" }}>
         <span style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "2px solid var(--whatsapp-green)", animation: "pulse-ring 2s infinite" }} />
         <WhatsAppIcon size={30} color="var(--white)" />
       </a>
@@ -251,7 +253,7 @@ export default function ServicesApplyPage() {
         </div>
       </section>
 
-      <section style={{ padding: "0 var(--container-pad) 96px", maxWidth: 1080, margin: "-56px auto 0", position: "relative" }}>
+      <section style={{ padding: "0 32px 96px", maxWidth: 1080, margin: "-56px auto 0", position: "relative" }}>
         {serviceNames === null ? null : sent ? (
           <div style={{ maxWidth: 640, margin: "0 auto", background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 24px 55px rgba(11,31,58,.14)", padding: "var(--space-8)", position: "relative", overflow: "hidden", animation: "fade-in-up .55s var(--ease-standard) both" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: "linear-gradient(90deg,var(--gold-400),var(--gold-600))" }} />
@@ -319,7 +321,7 @@ export default function ServicesApplyPage() {
             <button onClick={goServices} style={pillBtn(true)}>Browse services →</button>
           </div>
         ) : (
-          <div className="rsp-2col" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 400px", gap: 30, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: bp.ltDesktop ? "1fr" : "minmax(0,1fr) 400px", gap: 30, alignItems: "start" }}>
             <div style={{ minWidth: 0 }}>
               <div style={{ position: "relative", background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 14px 38px rgba(11,31,58,.08)", border: "1px solid var(--ink-100)", padding: "28px 30px 22px", marginBottom: 24, overflow: "hidden" }}>
                 <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(var(--ink-100) 1px,transparent 1px)", backgroundSize: "20px 20px", opacity: 0.5, pointerEvents: "none" }} />
@@ -516,7 +518,7 @@ export default function ServicesApplyPage() {
                               </span>
                               <div style={{ fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--gold-600)" }}>{cat.title}</div>
                             </div>
-                            <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                            <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : "1fr 1fr", gap: 8 }}>
                               {(cat.docs || []).map((doc) => {
                                 const key = cat.title + "::" + doc;
                                 const on = !!checked[key];
@@ -571,7 +573,7 @@ export default function ServicesApplyPage() {
                         <div style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-2xl)", color: "var(--navy-900)" }}>Where should we reach you?</div>
                         <div style={{ fontFamily: "var(--font-body)", fontSize: 13.5, color: "var(--ink-500)", marginTop: 4 }}>No obligation — an advisor calls to confirm scope, no payment needed to submit.</div>
                       </div>
-                      <div className="rsp-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                      <div style={{ display: "grid", gridTemplateColumns: bp.mobile ? "1fr" : "1fr 1fr", gap: 12 }}>
                         <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                           <ApplyLabel>Full name</ApplyLabel>
                           <input required value={f.name} onChange={(e) => set("name", e.target.value)} onFocus={foc} onBlur={blur} placeholder="Jane Doe" style={iStyle} />
@@ -624,7 +626,7 @@ export default function ServicesApplyPage() {
               )}
             </div>
 
-            <aside className="rsp-unstick rsp-order-first" style={{ position: "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18 }}>
+            <aside style={{ position: bp.ltDesktop ? "static" : "sticky", top: 90, display: "flex", flexDirection: "column", gap: 18, order: bp.ltDesktop ? -1 : 0 }}>
               <div style={{ background: "var(--white)", borderRadius: "var(--radius-xl)", boxShadow: "0 20px 45px rgba(11,31,58,.12)", border: "1px solid var(--ink-100)", overflow: "hidden" }}>
                 <div onMouseEnter={() => setHeadHover(true)} onMouseLeave={() => setHeadHover(false)} style={{ position: "relative", overflow: "hidden", padding: "20px 26px 30px", background: "linear-gradient(150deg,var(--gold-300) 0%,var(--gold-500) 52%,var(--gold-600) 100%)", cursor: "default" }}>
                   <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "repeating-linear-gradient(90deg,var(--navy-950) 0 14px,transparent 14px 20px)" }} />

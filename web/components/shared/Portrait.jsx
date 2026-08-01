@@ -2,14 +2,25 @@
 import { useId } from "react";
 import { ACCENTS } from "@/data/theme";
 
-// Real portrait photos keyed off a deterministic seed, used on review/client cards.
-// Gender alternates by seed parity so the set shows a natural mix.
+// Self-contained gradient-silhouette avatar, matching the source's PortraitV2 exactly
+// (no external image dependency, so it can never fail to load).
 export function Portrait({ seed = 0, size = 40 }) {
-  const n = Math.abs(Math.round(seed)) % 99;
-  const gender = Math.round(seed) % 2 === 0 ? "women" : "men";
-  const src = `https://randomuser.me/api/portraits/${gender}/${n}.jpg`;
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={src} alt="" width={size} height={size} loading="lazy" style={{ display: "block", width: size, height: size, objectFit: "cover", borderRadius: "50%" }} />;
+  const h = (Math.abs(Math.round(seed)) * 47) % 360;
+  const h2 = (h + 38) % 360;
+  const gid = "pv" + useId().replace(/[^a-z0-9]/gi, "");
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" style={{ display: "block" }}>
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={`hsl(${h} 55% 62%)`} />
+          <stop offset="1" stopColor={`hsl(${h2} 52% 46%)`} />
+        </linearGradient>
+      </defs>
+      <circle cx="20" cy="20" r="20" fill={`url(#${gid})`} />
+      <circle cx="20" cy="16" r="6.4" fill="rgba(255,255,255,.9)" />
+      <path d="M8.5 33c1.6-6.2 6.1-9.4 11.5-9.4S29.9 26.8 31.5 33z" fill="rgba(255,255,255,.9)" />
+    </svg>
+  );
 }
 
 // Self-contained SVG initials avatar fallback (no external dependency).

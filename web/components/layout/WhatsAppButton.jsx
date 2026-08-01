@@ -1,15 +1,19 @@
+"use client";
+import { useBP } from "@/lib/useBP";
 import { WhatsAppIcon } from "@/components/shared/icons";
 import { WHATSAPP_URL } from "@/data/content";
 
 // Floating WhatsApp shortcut used on every page except Home (Home gets the richer ChatWidget).
-export function WhatsAppButton() {
+export function WhatsAppButton({ bottom }) {
+  const bp = useBP();
   return (
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
       style={{
-        position: "fixed", bottom: 26, right: 26, width: 58, height: 58, borderRadius: "50%",
+        position: "fixed", bottom: bottom ?? (bp.ltDesktop ? 16 : 26), right: bp.ltDesktop ? 16 : 26,
+        width: bp.ltDesktop ? 52 : 58, height: bp.ltDesktop ? 52 : 58, borderRadius: "50%",
         background: "var(--whatsapp-green)", display: "flex", alignItems: "center", justifyContent: "center",
         boxShadow: "var(--shadow-lg)", zIndex: 80, textDecoration: "none",
       }}

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MenuIcon, CloseIcon } from "@/components/shared/icons";
+import { useBP } from "@/lib/useBP";
 
 const ITEMS = [
   { k: "home", label: "Home", href: "/" },
@@ -17,6 +17,13 @@ export function NavBar({ active }) {
   const [scrolled, setScrolled] = useState(false);
   const [bookHover, setBookHover] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const bp = useBP();
+  const compact = bp.ltDesktop;
+  const [prevCompact, setPrevCompact] = useState(compact);
+  if (compact !== prevCompact) {
+    setPrevCompact(compact);
+    if (!compact) setMenuOpen(false);
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -36,8 +43,8 @@ export function NavBar({ active }) {
   return (
     <nav
       style={{
-        position: "sticky", top: 0, zIndex: 60, display: "grid", gridTemplateColumns: "auto 1fr auto",
-        alignItems: "center", gap: 24, padding: "16px clamp(16px, 4vw, 32px)",
+        position: "sticky", top: 0, zIndex: 60, display: "grid", gridTemplateColumns: compact ? "1fr auto" : "auto 1fr auto",
+        alignItems: "center", gap: compact ? 12 : 24, padding: compact ? "12px 18px" : "16px 32px",
         background: scrolled || menuOpen ? "rgba(255,255,255,.92)" : "var(--white)",
         backdropFilter: scrolled ? "saturate(180%) blur(18px)" : "none",
         WebkitBackdropFilter: scrolled ? "saturate(180%) blur(18px)" : "none",
@@ -55,67 +62,65 @@ export function NavBar({ active }) {
           <div style={{ fontSize: 10, color: "var(--ink-500)", lineHeight: 1.2 }}>Established 2017</div>
         </div>
       </Link>
-      <div className="nav-links" style={{ display: "flex", gap: 28, justifyContent: "center" }}>
-        {ITEMS.map((it) => (
-          <Link
-            key={it.k}
-            href={it.href}
-            style={{
-              fontSize: "var(--text-sm)", fontWeight: "var(--weight-medium)",
-              color: active === it.k ? "var(--gold-600)" : "var(--navy-800)",
-              textDecoration: "none", borderBottom: active === it.k ? "2px solid var(--gold-600)" : "2px solid transparent",
-              paddingBottom: 4, lineHeight: 1.2,
-            }}
-          >
-            {it.label}
-          </Link>
-        ))}
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, justifySelf: "end" }}>
+      {!compact && (
+        <div style={{ display: "flex", gap: 28, justifyContent: "center" }}>
+          {ITEMS.map((it) => (
+            <Link
+              key={it.k}
+              href={it.href}
+              style={{
+                fontSize: "var(--text-sm)", fontWeight: "var(--weight-medium)",
+                color: active === it.k ? "var(--gold-600)" : "var(--navy-800)",
+                textDecoration: "none", borderBottom: active === it.k ? "2px solid var(--gold-600)" : "2px solid transparent",
+                paddingBottom: 4, lineHeight: 1.2,
+              }}
+            >
+              {it.label}
+            </Link>
+          ))}
+        </div>
+      )}
+      {!compact && (
         <Link
           href="/contact"
-          className="nav-cta"
           onMouseEnter={() => setBookHover(true)}
           onMouseLeave={() => setBookHover(false)}
           style={{
             fontFamily: "var(--font-body)", fontWeight: "var(--weight-semibold)", fontSize: 13, padding: "11px 22px",
             borderRadius: "var(--radius-pill)", border: "none", background: "var(--gold-500)", color: "var(--navy-950)",
-            cursor: "pointer", whiteSpace: "nowrap", textDecoration: "none", display: "inline-block",
+            cursor: "pointer", whiteSpace: "nowrap", textDecoration: "none", display: "inline-block", justifySelf: "end",
             transform: bookHover ? "translateY(-2px)" : "none", boxShadow: bookHover ? "var(--shadow-md)" : "none", transition: "all .15s",
           }}
         >
           Book Free Consultation
         </Link>
+      )}
+      {compact && (
         <button
-          className="nav-hamburger"
+          aria-label="Menu"
           onClick={() => setMenuOpen((o) => !o)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
           style={{
-            alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "var(--radius-md)",
-            border: "1px solid var(--ink-100)", background: "var(--white)", color: "var(--navy-900)", cursor: "pointer",
+            width: 44, height: 44, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+            gap: 5, borderRadius: "var(--radius-md)", border: "1px solid var(--ink-100)", background: "var(--white)",
+            cursor: "pointer", padding: 0, justifySelf: "end",
           }}
         >
-          {menuOpen ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
+          <span style={{ width: 20, height: 2, borderRadius: 2, background: "var(--navy-900)", transition: "transform .25s", transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none" }} />
+          <span style={{ width: 20, height: 2, borderRadius: 2, background: "var(--navy-900)", opacity: menuOpen ? 0 : 1, transition: "opacity .2s" }} />
+          <span style={{ width: 20, height: 2, borderRadius: 2, background: "var(--navy-900)", transition: "transform .25s", transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none" }} />
         </button>
-      </div>
-      {menuOpen && (
-        <div
-          style={{
-            position: "absolute", top: "100%", left: 0, right: 0, background: "var(--white)",
-            borderBottom: "1px solid var(--ink-100)", boxShadow: "var(--shadow-lg)",
-            padding: "8px clamp(16px, 4vw, 32px) 20px", display: "flex", flexDirection: "column", gap: 2,
-          }}
-        >
+      )}
+      {compact && menuOpen && (
+        <div style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 2, paddingTop: 10, marginTop: 4, borderTop: "1px solid var(--ink-100)" }}>
           {ITEMS.map((it) => (
             <Link
               key={it.k}
               href={it.href}
               onClick={() => setMenuOpen(false)}
               style={{
-                fontSize: "var(--text-base)", fontWeight: "var(--weight-medium)", padding: "13px 4px",
+                fontSize: "var(--text-base)", fontWeight: "var(--weight-medium)",
                 color: active === it.k ? "var(--gold-600)" : "var(--navy-800)",
-                textDecoration: "none", borderBottom: "1px solid var(--ink-100)",
+                textDecoration: "none", padding: "12px 8px", borderRadius: "var(--radius-md)", lineHeight: 1.2,
               }}
             >
               {it.label}
@@ -125,9 +130,9 @@ export function NavBar({ active }) {
             href="/contact"
             onClick={() => setMenuOpen(false)}
             style={{
-              fontFamily: "var(--font-body)", fontWeight: "var(--weight-semibold)", fontSize: 14, padding: "13px 22px",
+              marginTop: 8, fontFamily: "var(--font-body)", fontWeight: "var(--weight-semibold)", fontSize: 14, padding: "13px 22px",
               borderRadius: "var(--radius-pill)", border: "none", background: "var(--gold-500)", color: "var(--navy-950)",
-              textDecoration: "none", textAlign: "center", marginTop: 14,
+              textDecoration: "none", textAlign: "center", cursor: "pointer",
             }}
           >
             Book Free Consultation

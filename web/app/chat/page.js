@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useBP } from "@/lib/useBP";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -10,6 +11,7 @@ import { botReply, nowTime } from "@/components/chat/intentEngine";
 import { WHATSAPP_URL } from "@/data/content";
 
 export default function LiveChatPage() {
+  const bp = useBP();
   const [msgs, setMsgs] = useState([
     { who: "bot", text: "Hi, I’m Ira — your compliance concierge. 👋 Tell me what you’re working on and I’ll point you to the right expert. Pick a topic to begin, or just type your question below.", tiles: true, t: nowTime() },
   ]);
@@ -52,7 +54,7 @@ export default function LiveChatPage() {
             <h1 style={{ fontFamily: "var(--font-display)", fontWeight: "var(--weight-semibold)", fontSize: "var(--text-4xl)", color: "var(--navy-900)", margin: "0 0 8px", letterSpacing: "var(--tracking-tight)" }}>Meet Ira, your compliance concierge</h1>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-base)", color: "var(--ink-500)", margin: "0 auto", maxWidth: 460 }}>Ask anything about GST, tax, company setup or notices. Ira finds the right service in seconds — then a real advisor takes over.</p>
           </div>
-          <div className="chat-box" style={{ borderRadius: 22, overflow: "hidden", boxShadow: "0 30px 70px rgba(6,18,36,.32)", display: "flex", flexDirection: "column", height: 620, border: "1px solid rgba(255,255,255,.5)", background: "var(--white)" }}>
+          <div style={{ borderRadius: 22, overflow: "hidden", boxShadow: "0 30px 70px rgba(6,18,36,.32)", display: "flex", flexDirection: "column", height: bp.mobile ? "76vh" : 620, border: "1px solid rgba(255,255,255,.5)", background: "var(--white)" }}>
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14, padding: "18px 20px", background: "linear-gradient(135deg,var(--gold-400) 0%,var(--gold-500) 58%,#DA9A1E 100%)", overflow: "hidden" }}>
               <div style={{ position: "absolute", inset: 0, background: "radial-gradient(130% 150% at 88% -30%,rgba(255,255,255,.5),transparent 55%)", pointerEvents: "none" }} />
               <div style={{ position: "absolute", bottom: -40, left: -30, width: 190, height: 190, borderRadius: "50%", background: "radial-gradient(circle,rgba(11,31,58,.09),transparent 70%)", pointerEvents: "none" }} />
